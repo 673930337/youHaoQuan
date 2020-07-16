@@ -1,0 +1,892 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pay.paydata.dao.TblMchtInfMapper">
+  <resultMap id="BaseResultMap" type="com.pay.paydata.domain.TblMchtInf">
+    <id column="mcht_no" jdbcType="VARCHAR" property="mchtNo" />
+    <result column="mcht_name" jdbcType="VARCHAR" property="mchtName" />
+    <result column="mcht_short_name" jdbcType="VARCHAR" property="mchtShortName" />
+    <result column="prov_id" jdbcType="VARCHAR" property="provId" />
+    <result column="city_id" jdbcType="VARCHAR" property="cityId" />
+    <result column="area_id" jdbcType="VARCHAR" property="areaId" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="mcc" jdbcType="VARCHAR" property="mcc" />
+    <result column="business_shours" jdbcType="VARCHAR" property="businessShours" />
+    <result column="business_ehours" jdbcType="VARCHAR" property="businessEhours" />
+    <result column="cs_tel" jdbcType="VARCHAR" property="csTel" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="settle_type" jdbcType="CHAR" property="settleType" />
+    <result column="settle_term" jdbcType="VARCHAR" property="settleTerm" />
+    <result column="fee1" jdbcType="VARCHAR" property="fee1" />
+    <result column="settle_business" jdbcType="VARCHAR" property="settleBusiness" />
+    <result column="fee28" jdbcType="VARCHAR" property="fee28" />
+    <result column="out_acct_no" jdbcType="VARCHAR" property="outAcctNo" />
+    <result column="contact_name" jdbcType="VARCHAR" property="contactName" />
+    <result column="contact_tel_no" jdbcType="VARCHAR" property="contactTelNo" />
+    <result column="contact_email" jdbcType="VARCHAR" property="contactEmail" />
+    <result column="contact_id_type" jdbcType="VARCHAR" property="contactIdType" />
+    <result column="contact_id_no" jdbcType="VARCHAR" property="contactIdNo" />
+    <result column="contact_id_valid_type" jdbcType="CHAR" property="contactIdValidType" />
+    <result column="contact_id_sdate" jdbcType="VARCHAR" property="contactIdSdate" />
+    <result column="contact_id_edate" jdbcType="VARCHAR" property="contactIdEdate" />
+    <result column="bank_prov_id" jdbcType="VARCHAR" property="bankProvId" />
+    <result column="bank_city_id" jdbcType="VARCHAR" property="bankCityId" />
+    <result column="bank_name" jdbcType="VARCHAR" property="bankName" />
+    <result column="bank_union_code" jdbcType="VARCHAR" property="bankUnionCode" />
+    <result column="sub_bank_name" jdbcType="VARCHAR" property="subBankName" />
+    <result column="bank_acct_name" jdbcType="VARCHAR" property="bankAcctName" />
+    <result column="bank_acct_id" jdbcType="VARCHAR" property="bankAcctId" />
+    <result column="account_id_type" jdbcType="VARCHAR" property="accountIdType" />
+    <result column="account_id_no" jdbcType="VARCHAR" property="accountIdNo" />
+    <result column="account_id_valid_type" jdbcType="VARCHAR" property="accountIdValidType" />
+    <result column="account_id_sdate" jdbcType="VARCHAR" property="accountIdSdate" />
+    <result column="account_id_edate" jdbcType="VARCHAR" property="accountIdEdate" />
+    <result column="is_credit_code" jdbcType="CHAR" property="isCreditCode" />
+    <result column="credit_code" jdbcType="VARCHAR" property="creditCode" />
+    <result column="reg_code" jdbcType="VARCHAR" property="regCode" />
+    <result column="lic_type" jdbcType="CHAR" property="licType" />
+    <result column="lic_sdate" jdbcType="VARCHAR" property="licSdate" />
+    <result column="lic_edate" jdbcType="VARCHAR" property="licEdate" />
+    <result column="org_code" jdbcType="VARCHAR" property="orgCode" />
+    <result column="legal_name" jdbcType="VARCHAR" property="legalName" />
+    <result column="id_type" jdbcType="VARCHAR" property="idType" />
+    <result column="id_no" jdbcType="VARCHAR" property="idNo" />
+    <result column="id_valid_type" jdbcType="CHAR" property="idValidType" />
+    <result column="id_sdate" jdbcType="VARCHAR" property="idSdate" />
+    <result column="id_edate" jdbcType="VARCHAR" property="idEdate" />
+    <result column="merch_class" jdbcType="CHAR" property="merchClass" />
+    <result column="pnrpay_mer_type" jdbcType="CHAR" property="pnrpayMerType" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_emp" jdbcType="VARCHAR" property="createEmp" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="modify_emp" jdbcType="VARCHAR" property="modifyEmp" />
+    <result column="wxFeeRate" jdbcType="VARCHAR" property="wxFeeRate" />
+    <result column="alFeeRate" jdbcType="VARCHAR" property="alFeeRate" />
+    <result column="paySerialNo" jdbcType="VARCHAR" property="paySerialNo" />
+    <result column="abstractTxt" jdbcType="VARCHAR" property="abstractTxt" />
+    <result column="logo" jdbcType="VARCHAR" property="logo" />
+    <result column="deviceStatus" jdbcType="VARCHAR" property="deviceStatus" />
+    <result column="deviceSn" jdbcType="VARCHAR" property="deviceSn" />
+  </resultMap>
+  <sql id="Base_Column_List">
+     mcht_no, mcht_name, mcht_short_name, prov_id, city_id, area_id, address, mcc,
+    business_shours, business_ehours, cs_tel, status, settle_type, settle_term, fee1,
+    settle_business, fee28, out_acct_no, contact_name, contact_tel_no, contact_email,
+    contact_id_type, contact_id_no, contact_id_valid_type, contact_id_sdate, contact_id_edate,
+    bank_prov_id, bank_city_id, bank_name, bank_union_code, sub_bank_name, bank_acct_name,
+    bank_acct_id, account_id_type, account_id_no, account_id_valid_type, account_id_sdate,
+    account_id_edate, is_credit_code, credit_code, reg_code, lic_type, lic_sdate, lic_edate,
+    org_code, legal_name, id_type, id_no, id_valid_type, id_sdate, id_edate, merch_class,
+    pnrpay_mer_type, create_time, create_emp, modify_emp, modify_time,wxFeeRate,alFeeRate,
+    paySerialNo,abstractTxt,logo,deviceStatus,deviceSn
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_mcht_inf
+    where mcht_no = #{mchtNo}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tbl_mcht_inf
+    where mcht_no = #{mchtNo}
+  </delete>
+  <insert id="insert" parameterType="com.pay.paydata.domain.TblMchtInf">
+    insert into tbl_mcht_inf ( mcht_no, mcht_name,
+      mcht_short_name, prov_id, city_id,
+      area_id, address, mcc,
+      business_shours, business_ehours, cs_tel,
+      status, settle_type, settle_term,
+      fee1, settle_business, fee28,
+      out_acct_no, contact_name, contact_tel_no,
+      contact_email, contact_id_type, contact_id_no,
+      contact_id_valid_type, contact_id_sdate, contact_id_edate,
+      bank_prov_id, bank_city_id, bank_name,
+      bank_union_code, sub_bank_name, bank_acct_name,
+      bank_acct_id, account_id_type, account_id_no,
+      account_id_valid_type, account_id_sdate, account_id_edate,
+      is_credit_code, credit_code, reg_code,
+      lic_type, lic_sdate, lic_edate,
+      org_code, legal_name, id_type,
+      id_no, id_valid_type, id_sdate,
+      id_edate, merch_class, pnrpay_mer_type,
+      create_time, create_emp, modify_emp,
+      modify_time,wxFeeRate,alFeeRate,paySerialNo)
+    values ( #{mchtNo,jdbcType=VARCHAR}, #{mchtName,jdbcType=VARCHAR},
+      #{mchtShortName,jdbcType=VARCHAR}, #{provId,jdbcType=VARCHAR}, #{cityId,jdbcType=VARCHAR},
+      #{areaId,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{mcc,jdbcType=VARCHAR},
+      #{businessShours,jdbcType=VARCHAR}, #{businessEhours,jdbcType=VARCHAR}, #{csTel,jdbcType=VARCHAR},
+      #{status,jdbcType=CHAR}, #{settleType,jdbcType=CHAR}, #{settleTerm,jdbcType=VARCHAR},
+      #{fee1,jdbcType=VARCHAR}, #{settleBusiness,jdbcType=VARCHAR}, #{fee28,jdbcType=VARCHAR},
+      #{outAcctNo,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, #{contactTelNo,jdbcType=VARCHAR},
+      #{contactEmail,jdbcType=VARCHAR}, #{contactIdType,jdbcType=VARCHAR}, #{contactIdNo,jdbcType=VARCHAR},
+      #{contactIdValidType,jdbcType=CHAR}, #{contactIdSdate,jdbcType=VARCHAR}, #{contactIdEdate,jdbcType=VARCHAR},
+      #{bankProvId,jdbcType=VARCHAR}, #{bankCityId,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR},
+      #{bankUnionCode,jdbcType=VARCHAR}, #{subBankName,jdbcType=VARCHAR}, #{bankAcctName,jdbcType=VARCHAR},
+      #{bankAcctId,jdbcType=VARCHAR}, #{accountIdType,jdbcType=VARCHAR}, #{accountIdNo,jdbcType=VARCHAR},
+      #{accountIdValidType,jdbcType=VARCHAR}, #{accountIdSdate,jdbcType=VARCHAR}, #{accountIdEdate,jdbcType=VARCHAR},
+      #{isCreditCode,jdbcType=CHAR}, #{creditCode,jdbcType=VARCHAR}, #{regCode,jdbcType=VARCHAR},
+      #{licType,jdbcType=CHAR}, #{licSdate,jdbcType=VARCHAR}, #{licEdate,jdbcType=VARCHAR},
+      #{orgCode,jdbcType=VARCHAR}, #{legalName,jdbcType=VARCHAR}, #{idType,jdbcType=VARCHAR},
+      #{idNo,jdbcType=VARCHAR}, #{idValidType,jdbcType=CHAR}, #{idSdate,jdbcType=VARCHAR},
+      #{idEdate,jdbcType=VARCHAR}, #{merchClass,jdbcType=CHAR}, #{pnrpayMerType,jdbcType=CHAR},
+      now(), #{createEmp,jdbcType=VARCHAR}, #{modifyEmp,jdbcType=VARCHAR},
+      now(),#{wxFeeRate,jdbcType=VARCHAR},#{alFeeRate,jdbcType=VARCHAR},#{paySerialNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pay.paydata.domain.TblMchtInf">
+    insert into tbl_mcht_inf
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+
+      <if test="mchtNo != null">
+        mcht_no,
+      </if>
+      <if test="mchtName != null">
+        mcht_name,
+      </if>
+      <if test="mchtShortName != null">
+        mcht_short_name,
+      </if>
+      <if test="provId != null">
+        prov_id,
+      </if>
+      <if test="cityId != null">
+        city_id,
+      </if>
+      <if test="areaId != null">
+        area_id,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="mcc != null">
+        mcc,
+      </if>
+      <if test="businessShours != null">
+        business_shours,
+      </if>
+      <if test="businessEhours != null">
+        business_ehours,
+      </if>
+      <if test="csTel != null">
+        cs_tel,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="settleType != null">
+        settle_type,
+      </if>
+      <if test="settleTerm != null">
+        settle_term,
+      </if>
+      <if test="fee1 != null">
+        fee1,
+      </if>
+      <if test="settleBusiness != null">
+        settle_business,
+      </if>
+      <if test="fee28 != null">
+        fee28,
+      </if>
+      <if test="outAcctNo != null">
+        out_acct_no,
+      </if>
+      <if test="contactName != null">
+        contact_name,
+      </if>
+      <if test="contactTelNo != null">
+        contact_tel_no,
+      </if>
+      <if test="contactEmail != null">
+        contact_email,
+      </if>
+      <if test="contactIdType != null">
+        contact_id_type,
+      </if>
+      <if test="contactIdNo != null">
+        contact_id_no,
+      </if>
+      <if test="contactIdValidType != null">
+        contact_id_valid_type,
+      </if>
+      <if test="contactIdSdate != null">
+        contact_id_sdate,
+      </if>
+      <if test="contactIdEdate != null">
+        contact_id_edate,
+      </if>
+      <if test="bankProvId != null">
+        bank_prov_id,
+      </if>
+      <if test="bankCityId != null">
+        bank_city_id,
+      </if>
+      <if test="bankName != null">
+        bank_name,
+      </if>
+      <if test="bankUnionCode != null">
+        bank_union_code,
+      </if>
+      <if test="subBankName != null">
+        sub_bank_name,
+      </if>
+      <if test="bankAcctName != null">
+        bank_acct_name,
+      </if>
+      <if test="bankAcctId != null">
+        bank_acct_id,
+      </if>
+      <if test="accountIdType != null">
+        account_id_type,
+      </if>
+      <if test="accountIdNo != null">
+        account_id_no,
+      </if>
+      <if test="accountIdValidType != null">
+        account_id_valid_type,
+      </if>
+      <if test="accountIdSdate != null">
+        account_id_sdate,
+      </if>
+      <if test="accountIdEdate != null">
+        account_id_edate,
+      </if>
+      <if test="isCreditCode != null">
+        is_credit_code,
+      </if>
+      <if test="creditCode != null">
+        credit_code,
+      </if>
+      <if test="regCode != null">
+        reg_code,
+      </if>
+      <if test="licType != null">
+        lic_type,
+      </if>
+      <if test="licSdate != null">
+        lic_sdate,
+      </if>
+      <if test="licEdate != null">
+        lic_edate,
+      </if>
+      <if test="orgCode != null">
+        org_code,
+      </if>
+      <if test="legalName != null">
+        legal_name,
+      </if>
+      <if test="idType != null">
+        id_type,
+      </if>
+      <if test="idNo != null">
+        id_no,
+      </if>
+      <if test="idValidType != null">
+        id_valid_type,
+      </if>
+      <if test="idSdate != null">
+        id_sdate,
+      </if>
+      <if test="idEdate != null">
+        id_edate,
+      </if>
+      <if test="merchClass != null">
+        merch_class,
+      </if>
+      <if test="pnrpayMerType != null">
+        pnrpay_mer_type,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createEmp != null">
+        create_emp,
+      </if>
+      <if test="modifyEmp != null">
+        modify_emp,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+      <if test="abstractTxt != null">
+        abstractTxt ,
+      </if>
+      <if test="wxFeeRate != null">
+        wxFeeRate ,
+      </if>
+      <if test="alFeeRate != null">
+        alFeeRate ,
+      </if>
+      <if test="paySerialNo != null">
+        paySerialNo ,
+      </if>
+      <if test="logo != null">
+        logo ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+      <if test="mchtNo != null">
+        #{mchtNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mchtName != null">
+        #{mchtName,jdbcType=VARCHAR},
+      </if>
+      <if test="mchtShortName != null">
+        #{mchtShortName,jdbcType=VARCHAR},
+      </if>
+      <if test="provId != null">
+        #{provId,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null">
+        #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null">
+        #{areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="mcc != null">
+        #{mcc,jdbcType=VARCHAR},
+      </if>
+      <if test="businessShours != null">
+        #{businessShours,jdbcType=VARCHAR},
+      </if>
+      <if test="businessEhours != null">
+        #{businessEhours,jdbcType=VARCHAR},
+      </if>
+      <if test="csTel != null">
+        #{csTel,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="settleType != null">
+        #{settleType,jdbcType=CHAR},
+      </if>
+      <if test="settleTerm != null">
+        #{settleTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="fee1 != null">
+        #{fee1,jdbcType=VARCHAR},
+      </if>
+      <if test="settleBusiness != null">
+        #{settleBusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="fee28 != null">
+        #{fee28,jdbcType=VARCHAR},
+      </if>
+      <if test="outAcctNo != null">
+        #{outAcctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null">
+        #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactTelNo != null">
+        #{contactTelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="contactEmail != null">
+        #{contactEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="contactIdType != null">
+        #{contactIdType,jdbcType=VARCHAR},
+      </if>
+      <if test="contactIdNo != null">
+        #{contactIdNo,jdbcType=VARCHAR},
+      </if>
+      <if test="contactIdValidType != null">
+        #{contactIdValidType,jdbcType=CHAR},
+      </if>
+      <if test="contactIdSdate != null">
+        #{contactIdSdate,jdbcType=VARCHAR},
+      </if>
+      <if test="contactIdEdate != null">
+        #{contactIdEdate,jdbcType=VARCHAR},
+      </if>
+      <if test="bankProvId != null">
+        #{bankProvId,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCityId != null">
+        #{bankCityId,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankUnionCode != null">
+        #{bankUnionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="subBankName != null">
+        #{subBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAcctName != null">
+        #{bankAcctName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAcctId != null">
+        #{bankAcctId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountIdType != null">
+        #{accountIdType,jdbcType=VARCHAR},
+      </if>
+      <if test="accountIdNo != null">
+        #{accountIdNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountIdValidType != null">
+        #{accountIdValidType,jdbcType=VARCHAR},
+      </if>
+      <if test="accountIdSdate != null">
+        #{accountIdSdate,jdbcType=VARCHAR},
+      </if>
+      <if test="accountIdEdate != null">
+        #{accountIdEdate,jdbcType=VARCHAR},
+      </if>
+      <if test="isCreditCode != null">
+        #{isCreditCode,jdbcType=CHAR},
+      </if>
+      <if test="creditCode != null">
+        #{creditCode,jdbcType=VARCHAR},
+      </if>
+      <if test="regCode != null">
+        #{regCode,jdbcType=VARCHAR},
+      </if>
+      <if test="licType != null">
+        #{licType,jdbcType=CHAR},
+      </if>
+      <if test="licSdate != null">
+        #{licSdate,jdbcType=VARCHAR},
+      </if>
+      <if test="licEdate != null">
+        #{licEdate,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null">
+        #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="legalName != null">
+        #{legalName,jdbcType=VARCHAR},
+      </if>
+      <if test="idType != null">
+        #{idType,jdbcType=VARCHAR},
+      </if>
+      <if test="idNo != null">
+        #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idValidType != null">
+        #{idValidType,jdbcType=CHAR},
+      </if>
+      <if test="idSdate != null">
+        #{idSdate,jdbcType=VARCHAR},
+      </if>
+      <if test="idEdate != null">
+        #{idEdate,jdbcType=VARCHAR},
+      </if>
+      <if test="merchClass != null">
+        #{merchClass,jdbcType=CHAR},
+      </if>
+      <if test="pnrpayMerType != null">
+        #{pnrpayMerType,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createEmp != null">
+        #{createEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyEmp != null">
+        #{modifyEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="abstractTxt != null">
+        #{abstractTxt,jdbcType=VARCHAR},
+      </if>
+
+      <if test="wxFeeRate != null">
+        #{wxFeeRate,jdbcType=VARCHAR},
+      </if>
+      <if test="alFeeRate != null">
+        #{alFeeRate,jdbcType=VARCHAR},
+      </if>
+      <if test="paySerialNo != null">
+        #{paySerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null">
+        #{logo,jdbcType=VARCHAR},
+      </if>
+
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pay.paydata.domain.TblMchtInf">
+    update tbl_mcht_inf
+    <set>
+      modify_time = now(),
+      <if test="mchtNo != null">
+        mcht_no = #{mchtNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mchtName != null">
+        mcht_name = #{mchtName,jdbcType=VARCHAR},
+      </if>
+      <if test="mchtShortName != null">
+        mcht_short_name = #{mchtShortName,jdbcType=VARCHAR},
+      </if>
+      <if test="provId != null">
+        prov_id = #{provId,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null">
+        city_id = #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null">
+        area_id = #{areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="mcc != null">
+        mcc = #{mcc,jdbcType=VARCHAR},
+      </if>
+      <if test="businessShours != null">
+        business_shours = #{businessShours,jdbcType=VARCHAR},
+      </if>
+      <if test="businessEhours != null">
+        business_ehours = #{businessEhours,jdbcType=VARCHAR},
+      </if>
+      <if test="csTel != null">
+        cs_tel = #{csTel,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="settleType != null">
+        settle_type = #{settleType,jdbcType=CHAR},
+      </if>
+      <if test="settleTerm != null">
+        settle_term = #{settleTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="fee1 != null">
+        fee1 = #{fee1,jdbcType=VARCHAR},
+      </if>
+      <if test="settleBusiness != null">
+        settle_business = #{settleBusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="fee28 != null">
+        fee28 = #{fee28,jdbcType=VARCHAR},
+      </if>
+      <if test="outAcctNo != null">
+        out_acct_no = #{outAcctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null">
+        contact_name = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactTelNo != null">
+        contact_tel_no = #{contactTelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="contactEmail != null">
+        contact_email = #{contactEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="contactIdType != null">
+        contact_id_type = #{contactIdType,jdbcType=VARCHAR},
+      </if>
+      <if test="contactIdNo != null">
+        contact_id_no = #{contactIdNo,jdbcType=VARCHAR},
+      </if>
+      <if test="contactIdValidType != null">
+        contact_id_valid_type = #{contactIdValidType,jdbcType=CHAR},
+      </if>
+      <if test="contactIdSdate != null">
+        contact_id_sdate = #{contactIdSdate,jdbcType=VARCHAR},
+      </if>
+      <if test="contactIdEdate != null">
+        contact_id_edate = #{contactIdEdate,jdbcType=VARCHAR},
+      </if>
+      <if test="bankProvId != null">
+        bank_prov_id = #{bankProvId,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCityId != null">
+        bank_city_id = #{bankCityId,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankUnionCode != null">
+        bank_union_code = #{bankUnionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="subBankName != null">
+        sub_bank_name = #{subBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAcctName != null">
+        bank_acct_name = #{bankAcctName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAcctId != null">
+        bank_acct_id = #{bankAcctId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountIdType != null">
+        account_id_type = #{accountIdType,jdbcType=VARCHAR},
+      </if>
+      <if test="accountIdNo != null">
+        account_id_no = #{accountIdNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountIdValidType != null">
+        account_id_valid_type = #{accountIdValidType,jdbcType=VARCHAR},
+      </if>
+      <if test="accountIdSdate != null">
+        account_id_sdate = #{accountIdSdate,jdbcType=VARCHAR},
+      </if>
+      <if test="accountIdEdate != null">
+        account_id_edate = #{accountIdEdate,jdbcType=VARCHAR},
+      </if>
+      <if test="isCreditCode != null">
+        is_credit_code = #{isCreditCode,jdbcType=CHAR},
+      </if>
+      <if test="creditCode != null">
+        credit_code = #{creditCode,jdbcType=VARCHAR},
+      </if>
+      <if test="regCode != null">
+        reg_code = #{regCode,jdbcType=VARCHAR},
+      </if>
+      <if test="licType != null">
+        lic_type = #{licType,jdbcType=CHAR},
+      </if>
+      <if test="licSdate != null">
+        lic_sdate = #{licSdate,jdbcType=VARCHAR},
+      </if>
+      <if test="licEdate != null">
+        lic_edate = #{licEdate,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null">
+        org_code = #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="legalName != null">
+        legal_name = #{legalName,jdbcType=VARCHAR},
+      </if>
+      <if test="idType != null">
+        id_type = #{idType,jdbcType=VARCHAR},
+      </if>
+      <if test="idNo != null">
+        id_no = #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idValidType != null">
+        id_valid_type = #{idValidType,jdbcType=CHAR},
+      </if>
+      <if test="idSdate != null">
+        id_sdate = #{idSdate,jdbcType=VARCHAR},
+      </if>
+      <if test="idEdate != null">
+        id_edate = #{idEdate,jdbcType=VARCHAR},
+      </if>
+      <if test="merchClass != null">
+        merch_class = #{merchClass,jdbcType=CHAR},
+      </if>
+      <if test="pnrpayMerType != null">
+        pnrpay_mer_type = #{pnrpayMerType,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createEmp != null">
+        create_emp = #{createEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyEmp != null">
+        modify_emp = #{modifyEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="abstractTxt != null">
+        abstractTxt = #{abstractTxt,jdbcType=VARCHAR},
+      </if>
+
+
+      <if test="wxFeeRate != null">
+        wxFeeRate =  #{wxFeeRate,jdbcType=VARCHAR},
+      </if>
+      <if test="alFeeRate != null">
+        alFeeRate = #{alFeeRate,jdbcType=VARCHAR},
+      </if>
+      <if test="paySerialNo != null">
+        paySerialNo = #{paySerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null">
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceSn != null">
+        deviceSn = #{deviceSn,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceSn == null">
+        deviceSn = null,
+      </if>
+      <if test="deviceStatus != null">
+        deviceStatus = #{deviceStatus,jdbcType=VARCHAR},
+      </if>
+
+
+    </set>
+    where mcht_no = #{mchtNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pay.paydata.domain.TblMchtInf">
+    update tbl_mcht_inf
+    set
+      mcht_name = #{mchtName,jdbcType=VARCHAR},
+      mcht_short_name = #{mchtShortName,jdbcType=VARCHAR},
+      prov_id = #{provId,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=VARCHAR},
+      area_id = #{areaId,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      mcc = #{mcc,jdbcType=VARCHAR},
+      business_shours = #{businessShours,jdbcType=VARCHAR},
+      business_ehours = #{businessEhours,jdbcType=VARCHAR},
+      cs_tel = #{csTel,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      settle_type = #{settleType,jdbcType=CHAR},
+      settle_term = #{settleTerm,jdbcType=VARCHAR},
+      fee1 = #{fee1,jdbcType=VARCHAR},
+      settle_business = #{settleBusiness,jdbcType=VARCHAR},
+      fee28 = #{fee28,jdbcType=VARCHAR},
+      out_acct_no = #{outAcctNo,jdbcType=VARCHAR},
+      contact_name = #{contactName,jdbcType=VARCHAR},
+      contact_tel_no = #{contactTelNo,jdbcType=VARCHAR},
+      contact_email = #{contactEmail,jdbcType=VARCHAR},
+      contact_id_type = #{contactIdType,jdbcType=VARCHAR},
+      contact_id_no = #{contactIdNo,jdbcType=VARCHAR},
+      contact_id_valid_type = #{contactIdValidType,jdbcType=CHAR},
+      contact_id_sdate = #{contactIdSdate,jdbcType=VARCHAR},
+      contact_id_edate = #{contactIdEdate,jdbcType=VARCHAR},
+      bank_prov_id = #{bankProvId,jdbcType=VARCHAR},
+      bank_city_id = #{bankCityId,jdbcType=VARCHAR},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      bank_union_code = #{bankUnionCode,jdbcType=VARCHAR},
+      sub_bank_name = #{subBankName,jdbcType=VARCHAR},
+      bank_acct_name = #{bankAcctName,jdbcType=VARCHAR},
+      bank_acct_id = #{bankAcctId,jdbcType=VARCHAR},
+      account_id_type = #{accountIdType,jdbcType=VARCHAR},
+      account_id_no = #{accountIdNo,jdbcType=VARCHAR},
+      account_id_valid_type = #{accountIdValidType,jdbcType=VARCHAR},
+      account_id_sdate = #{accountIdSdate,jdbcType=VARCHAR},
+      account_id_edate = #{accountIdEdate,jdbcType=VARCHAR},
+      is_credit_code = #{isCreditCode,jdbcType=CHAR},
+      credit_code = #{creditCode,jdbcType=VARCHAR},
+      reg_code = #{regCode,jdbcType=VARCHAR},
+      lic_type = #{licType,jdbcType=CHAR},
+      lic_sdate = #{licSdate,jdbcType=VARCHAR},
+      lic_edate = #{licEdate,jdbcType=VARCHAR},
+      org_code = #{orgCode,jdbcType=VARCHAR},
+      legal_name = #{legalName,jdbcType=VARCHAR},
+      id_type = #{idType,jdbcType=VARCHAR},
+      id_no = #{idNo,jdbcType=VARCHAR},
+      id_valid_type = #{idValidType,jdbcType=CHAR},
+      id_sdate = #{idSdate,jdbcType=VARCHAR},
+      id_edate = #{idEdate,jdbcType=VARCHAR},
+      merch_class = #{merchClass,jdbcType=CHAR},
+      pnrpay_mer_type = #{pnrpayMerType,jdbcType=CHAR},
+      modify_emp = #{modifyEmp,jdbcType=VARCHAR},
+      modify_time = now(),
+      logo = #{logo,jdbcType=VARCHAR}
+    where mcht_no = #{mchtNo,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getTblMchtInfList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_mcht_inf
+    <where>
+      <if test="mchtNo != null and mchtNo != ''">
+        mcht_no = #{mchtNo,jdbcType=VARCHAR}
+      </if>
+      <if test="mchtName != null and mchtName != ''">
+        And mcht_name = #{mchtName,jdbcType=VARCHAR}
+      </if>
+      <if test="status != null and status != ''">
+        and status = #{status,jdbcType=CHAR}
+      </if>
+    </where>
+    order by create_time desc
+    limit #{offset}, #{limit}
+  </select>
+
+  <select id="countTblMchtInf" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select
+    count(1)
+    from tbl_mcht_inf
+    <where>
+      <if test="mchtNo != null and mchtNo != ''">
+        mcht_no = #{mchtNo,jdbcType=VARCHAR}
+      </if>
+      <if test="mchtName != null and mchtName != ''">
+        and mcht_name = #{mchtName,jdbcType=VARCHAR}
+      </if>
+      <if test="status != null and status != ''">
+        and status = #{status,jdbcType=CHAR}
+      </if>
+    </where>
+  </select>
+
+  <!--根据商户号获取商户信息-->
+  <select id="selectByMchtNo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tbl_mcht_inf
+    where mcht_no = #{mchtNo,jdbcType=VARCHAR}
+  </select>
+
+
+  <!--根据员工号获取商户列表-->
+  <select id="selectByEmpNo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    t.*
+    from tbl_mcht_inf t
+    right join tbl_mcht_employee_info m on t.mcht_no = m.mcht_no
+    where m.emp_no = #{empNo,jdbcType=VARCHAR}
+  </select>
+
+
+
+
+  <!--根据编号获取商户信息-->
+  <select id="getMerchantInfo" resultType="com.alibaba.fastjson.JSONObject" parameterType="com.alibaba.fastjson.JSONObject" >
+      SELECT
+
+      `mcht_no` mchtNo,
+      `mcht_name`  mchtName,
+      `mcht_short_name` mchtShortName,
+      `abstractTxt`,
+      `prov_id` provId,
+      `city_id` cityId,
+      `area_id` areaId,
+      `address`,
+      `mcc`,
+      `business_shours` businessShours,
+      `business_ehours` businessEhours,
+      `cs_tel` csTel,
+      `status`,
+      `settle_type` settleType,
+      `settle_term` settleTerm,
+      `fee1`,
+      `settle_business` settleBusiness,
+      logo,
+      deviceSn
+    FROM
+      `quan`.`tbl_mcht_inf`
+    WHERE `mcht_no`= #{empNo,jdbcType=VARCHAR}
+  </select>
+
+    <select id="mchtInfo" resultType="com.alibaba.fastjson.JSONObject" parameterType="com.alibaba.fastjson.JSONObject">
+       SELECT
+
+      `mcht_no` mchtNo,
+      `mcht_name`  mchtName,
+      `mcht_short_name` mchtShortName,
+      `abstractTxt`,
+      `prov_id` provId,
+      `city_id` cityId,
+      `area_id` areaId,
+      `address`,
+      `mcc`,
+      `business_shours` businessShours,
+      `business_ehours` businessEhours,
+      `cs_tel` csTel,
+      `status`,
+      `settle_type` settleType,
+      `settle_term` settleTerm,
+      `fee1`,
+      `settle_business` settleBusiness,
+      logo
+    FROM
+      `tbl_mcht_inf`
+    WHERE deviceSn = #{deviceSn}
+
+    </select>
+</mapper>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pay.paydata.dao.ConsumerCouponInfoMapper">
+
+    <insert id="insert" parameterType="com.alibaba.fastjson.JSONObject">
+        INSERT INTO `consumer_coupon_info`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="consumerId != null">
+                consumerId,
+            </if>
+            <if test="consumerName != null">
+                consumerName,
+            </if>
+            <if test="couponId != null">
+                couponId,
+            </if>
+            <if test="createTime != null">
+                createTime,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="modifyTime != null">
+                modifyTime,
+            </if>
+            <if test="mchtId != null">
+                mchtId,
+            </if>
+            <if test="consumerTel != null">
+                consumerTel,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="consumerId != null">
+                #{consumerId},
+            </if>
+            <if test="consumerName != null">
+                #{consumerName},
+            </if>
+            <if test="couponId != null">
+                #{couponId},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="status != null">
+                #{status},
+            </if>
+            <if test="modifyTime != null">
+                #{modifyTime},
+            </if>
+            <if test="mchtId != null">
+                #{mchtId},
+            </if>
+            <if test="consumerTel != null">
+                #{consumerTel},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateStatus" parameterType="com.alibaba.fastjson.JSONObject">
+        UPDATE
+          `consumer_coupon_info`
+        SET
+          `status` = '1'
+        where `id` = #{consumerCouponId}
+    </update>
+
+
+    <!--根据商户号获取优惠券列表-->
+    <select id="selectByPrimaryKey" resultType="com.alibaba.fastjson.JSONObject" parameterType="com.alibaba.fastjson.JSONObject" >
+        select
+        *
+        from `consumer_coupon_info`
+        where id = #{id}
+    </select>
+
+
+</mapper>

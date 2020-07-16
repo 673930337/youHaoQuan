@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pay.paydata.dao.TblEmployeeInfMapper">
+  <resultMap id="BaseResultMap" type="com.pay.paydata.domain.TblEmployeeInf">
+    <id column="emp_no" jdbcType="VARCHAR" property="empNo" />
+    <result column="emp_name" jdbcType="VARCHAR" property="empName" />
+    <result column="emp_type" jdbcType="CHAR" property="empType" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="isLeader" jdbcType="VARCHAR" property="isLeader" />
+    <result column="isFirst" jdbcType="VARCHAR" property="isFirst" />
+    <result column="haveCoupon" jdbcType="VARCHAR" property="haveCoupon" />
+    <result column="haveRefund" jdbcType="VARCHAR" property="haveRefund" />
+    <result column="pwd_err_cou" jdbcType="INTEGER" property="pwdErrCou" />
+    <result column="sex" jdbcType="CHAR" property="sex" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_emp" jdbcType="VARCHAR" property="createEmp" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="modify_emp" jdbcType="VARCHAR" property="modifyEmp" />
+    <result column="registrationId" jdbcType="VARCHAR" property="registrationId" />
+    <result column="verificationCode" jdbcType="VARCHAR" property="verificationCode" />
+    <result column="sendCodeTime" jdbcType="TIMESTAMP" property="sendCodeTime" />
+    <result column="loginFailureTime" jdbcType="TIMESTAMP" property="loginFailureTime" />
+    <result column="facetoken" jdbcType="VARCHAR" property="facetoken" />
+    <result column="faceScope" jdbcType="VARCHAR" property="faceScope" />
+    <result column="isFaceRefund" jdbcType="VARCHAR" property="isFaceRefund" />
+    <result column="isFaceLogin" jdbcType="VARCHAR" property="isFaceLogin" />
+  </resultMap>
+  <sql id="Base_Column_List">
+     emp_no, emp_name, emp_type, password, pwd_err_cou, sex, status, create_time,
+    create_emp, modify_time, modify_emp,refundPassword,haveCoupon,haveRefund,isLeader,isFirst,registrationId,verificationCode,sendCodeTime,facetoken,faceScope,isFaceRefund,isFaceLogin,loginFailureTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_employee_inf
+    where emp_no = #{empNo}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tbl_employee_inf
+    where emp_no = #{empNo}
+  </delete>
+  <insert id="insert" parameterType="com.pay.paydata.domain.TblEmployeeInf" >
+    insert into tbl_employee_inf ( emp_no, emp_name,
+      emp_type, password, pwd_err_cou,
+      sex,  status, create_time,
+      create_emp, modify_time, modify_emp,isFirst,refundPassword,haveCoupon,haveRefund,isLeader,registrationId,isFaceRefund,isFaceLogin
+      )
+    values ( #{empNo,jdbcType=VARCHAR}, #{empName,jdbcType=VARCHAR},
+      #{empType,jdbcType=CHAR}, #{password,jdbcType=VARCHAR}, #{pwdErrCou,jdbcType=INTEGER},
+      #{sex,jdbcType=CHAR}, #{status,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP},
+      #{createEmp,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, #{modifyEmp,jdbcType=VARCHAR},#{isFirst,jdbcType=VARCHAR},
+      #{refundPassword,jdbcType=VARCHAR},#{haveCoupon,jdbcType=VARCHAR},#{haveRefund,jdbcType=VARCHAR},#{isLeader,jdbcType=VARCHAR},#{registrationId,jdbcType=VARCHAR},
+      #{isFaceRefund,jdbcType=VARCHAR},#{isFaceLogin,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.pay.paydata.domain.TblEmployeeInf" >
+    insert into tbl_employee_inf
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="empNo != null">
+        emp_no,
+      </if>
+      <if test="empName != null">
+        emp_name,
+      </if>
+      <if test="empType != null">
+        emp_type,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="pwdErrCou != null">
+        pwd_err_cou,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createEmp != null">
+        create_emp,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+      <if test="modifyEmp != null">
+        modify_emp,
+      </if>
+      <if test="haveCoupon != null">
+        haveCoupon,
+      </if>
+      <if test="haveRefund != null">
+        haveRefund,
+      </if>
+      <if test="isLeader != null">
+        isLeader,
+      </if>
+      <if test="isFirst != null">
+        isFirst,
+      </if>
+      <if test="registrationId != null">
+        registrationId,
+      </if>
+      <if test="isFaceRefund != null">
+        isFaceRefund,
+      </if>
+      <if test="isFaceLogin != null">
+        isFaceLogin,
+      </if>
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="empNo != null">
+        #{empNo,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null">
+        #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="empType != null">
+        #{empType,jdbcType=CHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="pwdErrCou != null">
+        #{pwdErrCou,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=CHAR},
+      </if>
+
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createEmp != null">
+        #{createEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyEmp != null">
+        #{modifyEmp,jdbcType=VARCHAR},
+      </if>
+
+
+      <if test="haveCoupon != null">
+        #{haveCoupon,jdbcType=VARCHAR},
+      </if>
+      <if test="haveRefund != null">
+        #{haveRefund,jdbcType=VARCHAR},
+      </if>
+      <if test="isLeader != null">
+        #{isLeader,jdbcType=VARCHAR},
+      </if>
+      <if test="isFirst != null">
+        #{isFirst,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationId != null">
+        #{registrationId,jdbcType=VARCHAR},
+      </if>
+      <if test="isFaceRefund != null">
+        #{isFaceRefund,jdbcType=VARCHAR},
+      </if>
+
+      <if test="isFaceLogin != null">
+        #{isFaceLogin,jdbcType=VARCHAR},
+      </if>
+
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pay.paydata.domain.TblEmployeeInf">
+    update tbl_employee_inf
+    <set>
+
+      <if test="empName != null">
+        emp_name = #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="empType != null">
+        emp_type = #{empType,jdbcType=CHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="pwdErrCou != null">
+        pwd_err_cou = #{pwdErrCou,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createEmp != null">
+        create_emp = #{createEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyEmp != null">
+        modify_emp = #{modifyEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="isFirst != null">
+        isFirst = #{isFirst,jdbcType=VARCHAR},
+      </if>
+      <if test="refundPassword != null">
+        refundPassword = #{refundPassword,jdbcType=VARCHAR},
+      </if>
+
+      <if test="haveCoupon != null">
+        haveCoupon = #{haveCoupon,jdbcType=VARCHAR},
+      </if>
+      <if test="haveRefund != null">
+        haveRefund= #{haveRefund,jdbcType=VARCHAR},
+      </if>
+      <if test="isLeader != null">
+        isLeader= #{isLeader,jdbcType=VARCHAR},
+      </if>
+      <if test="isFirst != null">
+        isFirst=  #{isFirst,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationId != null">
+        registrationId=  #{registrationId,jdbcType=VARCHAR},
+      </if>
+      <if test="verificationCode != null">
+        verificationCode=  #{verificationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sendCodeTime != null">
+        sendCodeTime=  #{sendCodeTime},
+      </if>
+      <if test="loginFailureTime != null">
+        loginFailureTime=  #{loginFailureTime},
+      </if>
+      <if test="facetoken != null">
+        facetoken=  #{facetoken},
+      </if>
+      <if test="faceScope != null">
+        faceScope=  #{faceScope},
+      </if>
+      <if test="isFaceRefund != null">
+        isFaceRefund=  #{isFaceRefund},
+      </if>
+      <if test="isFaceLogin != null">
+        isFaceLogin=  #{isFaceLogin},
+      </if>
+    </set>
+    where emp_no = #{empNo}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pay.paydata.domain.TblEmployeeInf">
+    update tbl_employee_inf
+    set emp_no = #{empNo,jdbcType=VARCHAR},
+      emp_name = #{empName,jdbcType=VARCHAR},
+      emp_type = #{empType,jdbcType=CHAR},
+      password = #{password,jdbcType=VARCHAR},
+      pwd_err_cou = #{pwdErrCou,jdbcType=INTEGER},
+      sex = #{sex,jdbcType=CHAR},
+      status = #{status,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_emp = #{createEmp,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      modify_emp = #{modifyEmp,jdbcType=VARCHAR},
+      refundPassword = #{refundPassword,jdbcType=VARCHAR},
+      haveCoupon=  #{haveCoupon,jdbcType=VARCHAR},
+      haveRefund=    #{haveRefund,jdbcType=VARCHAR},
+      isLeader=    #{isLeader,jdbcType=VARCHAR},
+      isFirst=    #{isFirst,jdbcType=VARCHAR},
+      registrationId=    #{registrationId,jdbcType=VARCHAR},
+      verificationCode=    #{verificationCode,jdbcType=VARCHAR},
+      sendCodeTime=    #{sendCodeTime}
+    where emp_no = #{empNo}
+  </update>
+
+  <!--根据员工号获取员工信息-->
+  <select id="selectByEmpNo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tbl_employee_inf
+    where emp_no = #{empNo,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByEmpNo" parameterType="java.lang.String" >
+    delete from tbl_employee_inf
+    where emp_no = #{empNo,jdbcType=VARCHAR}
+  </delete>
+
+  <!--根据商户号分页获取员工列表-->
+  <select id="selectEmpByMcht" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select
+     t.*
+    from tbl_employee_inf t
+    right join tbl_mcht_employee_info m on t.emp_no = m.emp_no
+    where mcht_no = #{mchtNo,jdbcType=VARCHAR}
+    order by t.emp_no
+    limit #{offset}, #{pageSize}
+  </select>
+
+  <!--根据商户号获取员工数量-->
+  <select id="countEmpByMcht" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select
+      count(1)
+    from tbl_mcht_employee_info t
+    right join tbl_mcht_employee_info m on t.emp_no = m.emp_no
+    where m.mcht_no = #{mchtNo,jdbcType=VARCHAR}
+  </select>
+
+
+  <select id="searchEmp" resultMap="BaseResultMap" parameterType="java.util.Map" >
+        select
+      t.*
+    from tbl_employee_inf t
+    right join tbl_mcht_employee_info m on t.emp_no = m.emp_no
+    where mcht_no = #{mchtNo,jdbcType=VARCHAR} and(t.emp_name like CONCAT('%', #{searchText,jdbcType=VARCHAR}, '%') OR t.emp_no like CONCAT('%', #{searchText,jdbcType=VARCHAR}, '%'));
+  </select>
+
+
+  <select id="selectRegistrationIdsByMemberId" resultType="java.lang.String" parameterType="java.lang.String" >
+        SELECT
+         GROUP_CONCAT(e.`registrationId`)  registrationIds
+        FROM
+          `tbl_mcht_employee_info` me
+          LEFT JOIN `tbl_employee_inf` e
+          ON me.`emp_no`=e.`emp_no`
+          WHERE me.`mcht_no`=#{merchId} AND (e.`registrationId`!=null or e.`registrationId`!="")
+  </select>
+
+  <update id="deleteRegistrationId" parameterType="com.alibaba.fastjson.JSONObject">
+    update tbl_employee_inf
+    set
+    registrationId=  null
+    where emp_no = #{empNo}
+  </update>
+</mapper>

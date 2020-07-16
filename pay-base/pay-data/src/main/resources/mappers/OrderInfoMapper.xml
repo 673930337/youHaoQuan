@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pay.paydata.dao.OrderInfoDao">
+
+	<select id="get" resultType="com.pay.paydata.domain.OrderInfoDO">
+		select `order_no`,`order_time`,transaction_time,`pay_channel_type`,`order_type`,`member_id`,`trans_stat`,`refund_amt`,`order_amt`,`open_id`,`buyer_id`,`goods_desc`,`pay_type_detail`,`merchandise_fee`,`coupon_id`,`coupon_type`,`discount`,`full_amt`,`subtraction_amt`,`real_amt`,`update_time`,`create_time`,out_trans_id,refund_order_nos,preferential_amt from order_info where order_no = #{value}
+	</select>
+	<select id="indexOrderData" resultType="com.alibaba.fastjson.JSONObject" parameterType="com.alibaba.fastjson.JSONObject">
+		SELECT
+		    COUNT(`order_no`) orderCount,
+		  IFNULL(SUM(IFNULL(`order_amt`, 0)),0) sumOrderAmt,
+		  COUNT(`real_amt`) realPayCount,
+		  IFNULL(SUM(IFNULL(`real_amt`, 0)),0) sumRealAmt,
+		  COUNT(`coupon_id`) couponCount,
+		  IFNULL(SUM(IFNULL(`preferential_amt`, 0)),0) sumPreferentialAmt,
+		  COUNT(`refund_amt`) refund_count,
+		  IFNULL(SUM(IFNULL(`refund_amt`, 0)),0) sumRefundAmt
+		FROM
+		  `order_info`
+		WHERE `member_id` = #{mchtNo}
+				AND trans_stat='S'
+		  AND TO_DAYS(`transaction_time`) = TO_DAYS(NOW())
+	</select>
+
+
+	<select id="orderSettle" resultType="com.alibaba.fastjson.JSONObject" parameterType="com.alibaba.fastjson.JSONObject">
+		SELECT
+		    COUNT(`order_no`) orderCount,
+		  IFNULL(SUM(IFNULL(`order_amt`, 0)),0) sumOrderAmt,
+		  COUNT(`real_amt`) realPayCount,
+		  IFNULL(SUM(IFNULL(`real_amt`, 0)),0) sumRealAmt,
+		  COUNT(`coupon_id`) couponCount,
+		  IFNULL(SUM(IFNULL(`preferential_amt`, 0)),0) sumPreferentialAmt,
+		  COUNT(`refund_amt`) refund_count,
+		  IFNULL(SUM(IFNULL(`refund_amt`, 0)),0) sumRefundAmt
+		FROM
+		`order_info`
+		WHERE `member_id` = #{memberId}
+			AND trans_stat='S'
+		and transaction_time &gt;= #{beginTransactionTime}
+		 and transaction_time &lt;= #{endTransactionTime}
+	</select>
+
+	<select id="list" resultType="com.pay.paydata.domain.OrderInfoDO">
+		select `order_no`,`order_time`,`pay_channel_type`,`order_type`,`member_id`,`trans_stat`,`refund_amt`,`order_amt`,`open_id`,`buyer_id`,`goods_desc`,`pay_type_detail`,
+			`merchandise_fee`,`coupon_id`,`coupon_type`,`discount`,`full_amt`,`subtraction_amt`,`real_amt`,`update_time`,`create_time`,out_trans_id,refund_order_nos,preferential_amt from order_info
+        <where>  
+		  		  <if test="orderNo != null and orderNo != ''"> and order_no = #{orderNo} </if>
+		  		  <if test="orderTime != null and orderTime != ''"> and order_time = #{orderTime} </if>
+		  		  <if test="transactionTime != null and transactionTime != ''"> and transaction_time = #{transactionTime} </if>
+		  		  <if test="beginTransactionTime != null and beginTransactionTime != ''"> and transaction_time &gt;= #{beginTransactionTime} </if>
+		  		  <if test="endTransactionTime != null and endTransactionTime != ''"> and transaction_time &lt;= #{endTransactionTime} </if>
+		  		  <if test="payChannelType != null and payChannelType != ''"> and pay_channel_type = #{payChannelType} </if>
+		  		  <if test="orderType != null and orderType != ''"> and order_type = #{orderType} </if>
+		  		  <if test="memberId != null and memberId != ''"> and member_id = #{memberId} </if>
+		  		  <if test="transStat != null and transStat != ''"> and trans_stat = #{transStat} </if>
+		  		  <if test="refundAmt != null and refundAmt != ''"> and refund_amt = #{refundAmt} </if>
+		  		  <if test="orderAmt != null and orderAmt != ''"> and order_amt = #{orderAmt} </if>
+		  		  <if test="openId != null and openId != ''"> and open_id = #{openId} </if>
+		  		  <if test="buyerId != null and buyerId != ''"> and buyer_id = #{buyerId} </if>
+		  		  <if test="goodsDesc != null and goodsDesc != ''"> and goods_desc = #{goodsDesc} </if>
+		  		  <if test="payTypeDetail != null and payTypeDetail != ''"> and pay_type_detail = #{payTypeDetail} </if>
+		  		  <if test="merchandiseFee != null and merchandiseFee != ''"> and merchandise_fee = #{merchandiseFee} </if>
+		  		  <if test="couponId != null and couponId != ''"> and coupon_id = #{couponId} </if>
+		  		  <if test="couponType != null and couponType != ''"> and coupon_type = #{couponType} </if>
+		  		  <if test="discount != null and discount != ''"> and discount = #{discount} </if>
+		  		  <if test="fullAmt != null and fullAmt != ''"> and full_amt = #{fullAmt} </if>
+		  		  <if test="realAmt != null and realAmt != ''"> and real_amt = #{realAmt} </if>
+		  		  <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime} </if>
+		  		  <if test="createTime != null and createTime != ''"> and create_time = #{createTime} </if>
+		  		  <if test="outTransId != null and outTransId != ''"> and out_trans_id = #{outTransId} </if>
+		  		  <if test="refundOrderNos != null and refundOrderNos != ''"> and refund_order_nos = #{orgTermOrdId} </if>
+		  		  <if test="preferentialAmt != null and preferentialAmt != ''"> and preferential_amt = #{preferentialAmt} </if>
+		  		  <if test="subtractionAmt != null and subtractionAmt != ''"> and `subtraction_amt` = #{subtractionAmt} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by transaction_time desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from order_info
+		 <where>  
+		  		  <if test="orderNo != null and orderNo != ''"> and order_no = #{orderNo} </if>
+		  		  <if test="orderTime != null and orderTime != ''"> and order_time = #{orderTime} </if>
+			 <if test="transactionTime != null and transactionTime != ''"> and transaction_time = #{transactionTime} </if>
+			 <if test="payChannelType != null and payChannelType != ''"> and pay_channel_type = #{payChannelType} </if>
+		  		  <if test="orderType != null and orderType != ''"> and order_type = #{orderType} </if>
+		  		  <if test="memberId != null and memberId != ''"> and member_id = #{memberId} </if>
+		  		  <if test="transStat != null and transStat != ''"> and trans_stat = #{transStat} </if>
+		  		  <if test="refundAmt != null and refundAmt != ''"> and refund_amt = #{refundAmt} </if>
+		  		  <if test="orderAmt != null and orderAmt != ''"> and order_amt = #{orderAmt} </if>
+		  		  <if test="openId != null and openId != ''"> and open_id = #{openId} </if>
+		  		  <if test="buyerId != null and buyerId != ''"> and buyer_id = #{buyerId} </if>
+		  		  <if test="goodsDesc != null and goodsDesc != ''"> and goods_desc = #{goodsDesc} </if>
+		  		  <if test="payTypeDetail != null and payTypeDetail != ''"> and pay_type_detail = #{payTypeDetail} </if>
+		  		  <if test="merchandiseFee != null and merchandiseFee != ''"> and merchandise_fee = #{merchandiseFee} </if>
+		  		  <if test="couponId != null and couponId != ''"> and coupon_id = #{couponId} </if>
+		  		  <if test="couponType != null and couponType != ''"> and coupon_type = #{couponType} </if>
+		  		  <if test="discount != null and discount != ''"> and discount = #{discount} </if>
+		  		  <if test="fullAmt != null and fullAmt != ''"> and full_amt = #{fullAmt} </if>
+		  		  <if test="realAmt != null and realAmt != ''"> and real_amt = #{realAmt} </if>
+		  		  <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime} </if>
+		  		  <if test="createTime != null and createTime != ''"> and create_time = #{createTime} </if>
+			 <if test="outTransId != null and outTransId != ''"> and out_trans_id = #{outTransId} </if>
+			 <if test="refundOrderNos != null and refundOrderNos != ''"> and refund_order_nos = #{refundOrderNos} </if>
+			 <if test="preferentialAmt != null and preferentialAmt != ''"> and preferential_amt = #{preferentialAmt} </if>
+			 <if test="subtractionAmt != null and subtractionAmt != ''"> and `subtraction_amt` = #{subtractionAmt} </if>
+
+		 </where>
+	</select>
+	 
+	<insert id="save" parameterType="com.pay.paydata.domain.OrderInfoDO">
+		insert into order_info
+		(
+			`order_no`, 
+			`order_time`,
+		  transaction_time,
+		`pay_channel_type`,
+			`order_type`, 
+			`member_id`, 
+			`trans_stat`, 
+			`refund_amt`, 
+			`order_amt`, 
+			`open_id`, 
+			`buyer_id`, 
+			`goods_desc`, 
+			`pay_type_detail`, 
+			`merchandise_fee`, 
+			`coupon_id`, 
+			`coupon_type`, 
+			`discount`, 
+			`full_amt`, 
+			`real_amt`, 
+			`update_time`, 
+			`create_time`,
+			out_trans_id,
+			refund_order_nos,
+			preferential_amt,
+			subtraction_amt
+
+		)
+		values
+		(
+			#{orderNo}, 
+			#{orderTime}, 
+			#{transactionTime},
+			#{payChannelType},
+			#{orderType}, 
+			#{memberId}, 
+			#{transStat}, 
+			#{refundAmt}, 
+			#{orderAmt}, 
+			#{openId}, 
+			#{buyerId}, 
+			#{goodsDesc}, 
+			#{payTypeDetail}, 
+			#{merchandiseFee}, 
+			#{couponId}, 
+			#{couponType}, 
+			#{discount}, 
+			#{fullAmt}, 
+			#{realAmt}, 
+			#{updateTime}, 
+			#{createTime},
+			#{outTransId},
+			#{refundOrderNos},
+			#{preferentialAmt},
+			#{subtractionAmt}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.pay.paydata.domain.OrderInfoDO">
+		update order_info 
+		<set>
+			<if test="orderTime != null">`order_time` = #{orderTime}, </if>
+			<if test="transactionTime != null">`transaction_time` = #{transactionTime}, </if>
+			<if test="payChannelType != null">`pay_channel_type` = #{payChannelType}, </if>
+			<if test="orderType != null">`order_type` = #{orderType}, </if>
+			<if test="memberId != null">`member_id` = #{memberId}, </if>
+			<if test="transStat != null">`trans_stat` = #{transStat}, </if>
+			<if test="refundAmt != null">`refund_amt` = #{refundAmt}, </if>
+			<if test="orderAmt != null">`order_amt` = #{orderAmt}, </if>
+			<if test="openId != null">`open_id` = #{openId}, </if>
+			<if test="buyerId != null">`buyer_id` = #{buyerId}, </if>
+			<if test="goodsDesc != null">`goods_desc` = #{goodsDesc}, </if>
+			<if test="payTypeDetail != null">`pay_type_detail` = #{payTypeDetail}, </if>
+			<if test="merchandiseFee != null">`merchandise_fee` = #{merchandiseFee}, </if>
+			<if test="couponId != null">`coupon_id` = #{couponId}, </if>
+			<if test="couponType != null">`coupon_type` = #{couponType}, </if>
+			<if test="discount != null">`discount` = #{discount}, </if>
+			<if test="fullAmt != null">`full_amt` = #{fullAmt}, </if>
+			<if test="realAmt != null">`real_amt` = #{realAmt}, </if>
+			<if test="updateTime != null">`update_time` = #{updateTime}, </if>
+			<if test="createTime != null">`create_time` = #{createTime},</if>
+			<if test="outTransId != null ">out_trans_id = #{outTransId}, </if>
+			<if test="refundOrderNos != null ">refund_order_nos = #{refundOrderNos}, </if>
+			<if test="preferentialAmt != null and preferentialAmt != ''">  preferential_amt = #{preferentialAmt},</if>
+			<if test="subtractionAmt != null and subtractionAmt != ''">  subtraction_amt = #{subtractionAmt} </if>
+
+
+		</set>
+		where order_no = #{orderNo}
+	</update>
+	
+	<delete id="remove">
+		delete from order_info where order_no = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from order_info where order_no in 
+		<foreach item="orderNo" collection="array" open="(" separator="," close=")">
+			#{orderNo}
+		</foreach>
+	</delete>
+
+</mapper>

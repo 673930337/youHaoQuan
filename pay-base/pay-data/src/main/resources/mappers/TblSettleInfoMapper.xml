@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pay.paydata.dao.TblSettleInfoMapper">
+  <resultMap id="BaseResultMap" type="com.pay.paydata.domain.TblSettleInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="mcht_no" jdbcType="VARCHAR" property="mchtNo" />
+    <result column="settle_date" jdbcType="VARCHAR" property="settleDate" />
+    <result column="pay_amt" jdbcType="DECIMAL" property="payAmt" />
+    <result column="refund_amt" jdbcType="DECIMAL" property="refundAmt" />
+    <result column="settle_amt" jdbcType="DECIMAL" property="settleAmt" />
+    <result column="fee_amt" jdbcType="DECIMAL" property="feeAmt" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, mcht_no, settle_date, pay_amt, refund_amt, settle_amt, fee_amt, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_settle_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tbl_settle_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.pay.paydata.domain.TblSettleInfo">
+    insert into tbl_settle_info (id, mcht_no, settle_date,
+      pay_amt, refund_amt, settle_amt,
+      fee_amt, remark)
+    values (#{id,jdbcType=BIGINT}, #{mchtNo,jdbcType=VARCHAR}, #{settleDate,jdbcType=VARCHAR},
+      #{payAmt,jdbcType=DECIMAL}, #{refundAmt,jdbcType=DECIMAL}, #{settleAmt,jdbcType=DECIMAL},
+      #{feeAmt,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pay.paydata.domain.TblSettleInfo">
+    insert into tbl_settle_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="mchtNo != null">
+        mcht_no,
+      </if>
+      <if test="settleDate != null">
+        settle_date,
+      </if>
+      <if test="payAmt != null">
+        pay_amt,
+      </if>
+      <if test="refundAmt != null">
+        refund_amt,
+      </if>
+      <if test="settleAmt != null">
+        settle_amt,
+      </if>
+      <if test="feeAmt != null">
+        fee_amt,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="mchtNo != null">
+        #{mchtNo,jdbcType=VARCHAR},
+      </if>
+      <if test="settleDate != null">
+        #{settleDate,jdbcType=VARCHAR},
+      </if>
+      <if test="payAmt != null">
+        #{payAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="refundAmt != null">
+        #{refundAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="settleAmt != null">
+        #{settleAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="feeAmt != null">
+        #{feeAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pay.paydata.domain.TblSettleInfo">
+    update tbl_settle_info
+    <set>
+      <if test="mchtNo != null">
+        mcht_no = #{mchtNo,jdbcType=VARCHAR},
+      </if>
+      <if test="settleDate != null">
+        settle_date = #{settleDate,jdbcType=VARCHAR},
+      </if>
+      <if test="payAmt != null">
+        pay_amt = #{payAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="refundAmt != null">
+        refund_amt = #{refundAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="settleAmt != null">
+        settle_amt = #{settleAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="feeAmt != null">
+        fee_amt = #{feeAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pay.paydata.domain.TblSettleInfo">
+    update tbl_settle_info
+    set mcht_no = #{mchtNo,jdbcType=VARCHAR},
+      settle_date = #{settleDate,jdbcType=VARCHAR},
+      pay_amt = #{payAmt,jdbcType=DECIMAL},
+      refund_amt = #{refundAmt,jdbcType=DECIMAL},
+      settle_amt = #{settleAmt,jdbcType=DECIMAL},
+      fee_amt = #{feeAmt,jdbcType=DECIMAL},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <!--批量插入-->
+  <insert id="batchInsert" parameterType="java.util.List">
+    insert into tbl_settle_info (mcht_no, settle_date,
+      pay_amt, refund_amt, settle_amt,
+      fee_amt, remark)
+    values
+      <foreach collection="list" item="tblSettleInfo" index="index" separator=",">
+        (#{tblSettleInfo.mchtNo,jdbcType=VARCHAR},
+         #{tblSettleInfo.settleDate,jdbcType=VARCHAR},#{tblSettleInfo.payAmt,jdbcType=DECIMAL},
+         #{tblSettleInfo.refundAmt,jdbcType=DECIMAL}, #{tblSettleInfo.settleAmt,jdbcType=DECIMAL},
+        #{tblSettleInfo.feeAmt,jdbcType=DECIMAL}, #{tblSettleInfo.remark,jdbcType=VARCHAR})
+      </foreach>
+  </insert>
+
+  <sql id="Base_Condition">
+    <where>
+      <if test="mchtNo != null and mchtNo != ''">
+        mcht_no = #{mchtNo,jdbcType=VARCHAR}
+      </if>
+      <if test="settleDate != null and settleDate != ''">
+        and settle_date = #{settleDate,jdbcType=VARCHAR}
+      </if>
+      <if test="startDate != null and startDate != ''">
+        and settle_date &gt;= #{startDate,jdbcType=VARCHAR}
+      </if>
+      <if test="endDate != null and endDate != ''">
+        and settle_date &lt;= #{endDate,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </sql>
+
+  <select id="getSettleInfoList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_settle_info
+    <include refid="Base_Condition"/>
+    order by settle_date desc
+    limit #{offset}, #{limit}
+  </select>
+
+  <select id="countSettleInfo" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select
+     count(1)
+    from tbl_settle_info
+    <include refid="Base_Condition"/>
+  </select>
+
+  <select id="selectByMchtNo" parameterType="java.lang.String" resultType="com.alibaba.fastjson.JSONObject">
+    SELECT
+    COUNT(1) payTimes,
+    ifnull(SUM(pay_amt),0) payMoney,
+    ifnull(SUM(`refund_amt`),0) refundMoney,
+    ifnull(SUM(`settle_amt`),0) realityMoney
+  FROM
+    `tbl_settle_info`
+  WHERE mcht_no =
+    (SELECT
+      `mcht_no`
+    FROM
+      `tbl_mcht_employee_info`
+    WHERE `emp_no` = #{mchtNo,jdbcType=VARCHAR})
+
+  </select>
+
+
+
+</mapper>

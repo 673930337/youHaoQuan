@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pay.paydata.dao.TblPhotoInfoMapper">
+  <resultMap id="BaseResultMap" type="com.pay.paydata.domain.TblPhotoInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="mcht_no" jdbcType="VARCHAR" property="mchtNo" />
+    <result column="photo_type" jdbcType="CHAR" property="photoType" />
+    <result column="photo_id" jdbcType="VARCHAR" property="photoId" />
+    <result column="reserve1" jdbcType="VARCHAR" property="reserve1" />
+    <result column="reserve2" jdbcType="VARCHAR" property="reserve2" />
+    <result column="reserve3" jdbcType="VARCHAR" property="reserve3" />
+    <result column="create_emp" jdbcType="VARCHAR" property="createEmp" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_emp" jdbcType="VARCHAR" property="modifyEmp" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, mcht_no, photo_type, photo_id, reserve1, reserve2, reserve3, create_emp, create_time,
+    modify_emp, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_photo_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tbl_photo_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.pay.paydata.domain.TblPhotoInfo">
+    insert into tbl_photo_info (id, mcht_no, photo_type,
+      photo_id, reserve1, reserve2,
+      reserve3, create_emp, create_time,
+      modify_emp, modify_time)
+    values (#{id,jdbcType=BIGINT}, #{mchtNo,jdbcType=VARCHAR}, #{photoType,jdbcType=CHAR},
+      #{photoId,jdbcType=VARCHAR}, #{reserve1,jdbcType=VARCHAR}, #{reserve2,jdbcType=VARCHAR},
+      #{reserve3,jdbcType=VARCHAR}, #{createEmp,jdbcType=VARCHAR}, now(),
+      #{modifyEmp,jdbcType=VARCHAR}, now())
+  </insert>
+  <insert id="insertSelective" parameterType="com.pay.paydata.domain.TblPhotoInfo">
+    insert into tbl_photo_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="mchtNo != null">
+        mcht_no,
+      </if>
+      <if test="photoType != null">
+        photo_type,
+      </if>
+      <if test="photoId != null">
+        photo_id,
+      </if>
+      <if test="reserve1 != null">
+        reserve1,
+      </if>
+      <if test="reserve2 != null">
+        reserve2,
+      </if>
+      <if test="reserve3 != null">
+        reserve3,
+      </if>
+      <if test="createEmp != null">
+        create_emp,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyEmp != null">
+        modify_emp,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="mchtNo != null">
+        #{mchtNo,jdbcType=VARCHAR},
+      </if>
+      <if test="photoType != null">
+        #{photoType,jdbcType=CHAR},
+      </if>
+      <if test="photoId != null">
+        #{photoId,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve1 != null">
+        #{reserve1,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve2 != null">
+        #{reserve2,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve3 != null">
+        #{reserve3,jdbcType=VARCHAR},
+      </if>
+      <if test="createEmp != null">
+        #{createEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyEmp != null">
+        #{modifyEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pay.paydata.domain.TblPhotoInfo">
+    update tbl_photo_info
+    <set>
+      <if test="mchtNo != null">
+        mcht_no = #{mchtNo,jdbcType=VARCHAR},
+      </if>
+      <if test="photoType != null">
+        photo_type = #{photoType,jdbcType=CHAR},
+      </if>
+      <if test="photoId != null">
+        photo_id = #{photoId,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve1 != null">
+        reserve1 = #{reserve1,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve2 != null">
+        reserve2 = #{reserve2,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve3 != null">
+        reserve3 = #{reserve3,jdbcType=VARCHAR},
+      </if>
+      <if test="createEmp != null">
+        create_emp = #{createEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyEmp != null">
+        modify_emp = #{modifyEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pay.paydata.domain.TblPhotoInfo">
+    update tbl_photo_info
+    set mcht_no = #{mchtNo,jdbcType=VARCHAR},
+      photo_type = #{photoType,jdbcType=CHAR},
+      photo_id = #{photoId,jdbcType=VARCHAR},
+      reserve1 = #{reserve1,jdbcType=VARCHAR},
+      reserve2 = #{reserve2,jdbcType=VARCHAR},
+      reserve3 = #{reserve3,jdbcType=VARCHAR},
+      create_emp = #{createEmp,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_emp = #{modifyEmp,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

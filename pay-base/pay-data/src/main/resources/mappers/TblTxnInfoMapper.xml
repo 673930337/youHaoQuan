@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pay.paydata.dao.TblTxnInfoMapper">
+  <resultMap id="BaseResultMap" type="com.pay.paydata.domain.TblTxnInfo">
+    <id column="txn_no" jdbcType="VARCHAR" property="txnNo" />
+    <result column="txn_date" jdbcType="CHAR" property="txnDate" />
+    <result column="txn_time" jdbcType="CHAR" property="txnTime" />
+    <result column="txn_type" jdbcType="CHAR" property="txnType" />
+    <result column="pay_type" jdbcType="CHAR" property="payType" />
+    <result column="mcht_no" jdbcType="VARCHAR" property="mchtNo" />
+    <result column="mcht_name" jdbcType="VARCHAR" property="mchtName" />
+    <result column="txn_order_id" jdbcType="VARCHAR" property="txnOrderId" />
+    <result column="txn_order_time" jdbcType="VARCHAR" property="txnOrderTime" />
+    <result column="txn_amt" jdbcType="VARCHAR" property="txnAmt" />
+    <result column="txn_status" jdbcType="CHAR" property="txnStatus" />
+    <result column="goods_desc" jdbcType="VARCHAR" property="goodsDesc" />
+    <result column="term_id" jdbcType="VARCHAR" property="termId" />
+    <result column="back_end_url" jdbcType="VARCHAR" property="backEndUrl" />
+    <result column="code_url" jdbcType="VARCHAR" property="codeUrl" />
+    <result column="app_id" jdbcType="VARCHAR" property="appId" />
+    <result column="open_id" jdbcType="VARCHAR" property="openId" />
+    <result column="buyer_logon_id" jdbcType="VARCHAR" property="buyerLogonId" />
+    <result column="buyer_id" jdbcType="VARCHAR" property="buyerId" />
+    <result column="time_expire" jdbcType="VARCHAR" property="timeExpire" />
+    <result column="orig_txn_no" jdbcType="VARCHAR" property="origTxnNo" />
+    <result column="tpam_mcht_id" jdbcType="VARCHAR" property="tpamMchtId" />
+    <result column="tpam_txn_no" jdbcType="VARCHAR" property="tpamTxnNo" />
+    <result column="tpam_txn_date" jdbcType="VARCHAR" property="tpamTxnDate" />
+    <result column="tpam_txn_time" jdbcType="VARCHAR" property="tpamTxnTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_emp" jdbcType="VARCHAR" property="createEmp" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="modify_emp" jdbcType="VARCHAR" property="modifyEmp" />
+    <result column="attach" jdbcType="VARCHAR" property="attach" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    txn_no, txn_date, txn_time, txn_type, pay_type, mcht_no, mcht_name, txn_order_id,
+    txn_order_time, txn_amt, txn_status, goods_desc, term_id, back_end_url, code_url,
+    app_id, open_id, buyer_logon_id, buyer_id, time_expire, orig_txn_no, tpam_mcht_id,
+    tpam_txn_no, tpam_txn_date, tpam_txn_time, create_time, create_emp, modify_time,
+    modify_emp, attach
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_txn_info
+    where txn_no = #{txnNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tbl_txn_info
+    where txn_no = #{txnNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.pay.paydata.domain.TblTxnInfo">
+    insert into tbl_txn_info (txn_no, txn_date, txn_time,
+      txn_type, pay_type, mcht_no,
+      mcht_name, txn_order_id, txn_order_time,
+      txn_amt, txn_status, goods_desc,
+      term_id, back_end_url, code_url,
+      app_id, open_id, buyer_logon_id,
+      buyer_id, time_expire, orig_txn_no,
+      tpam_mcht_id, tpam_txn_no, tpam_txn_date,
+      tpam_txn_time, create_time, create_emp,
+      modify_time, modify_emp, attach
+      )
+    values (#{txnNo,jdbcType=VARCHAR}, #{txnDate,jdbcType=CHAR}, #{txnTime,jdbcType=CHAR},
+      #{txnType,jdbcType=CHAR}, #{payType,jdbcType=CHAR}, #{mchtNo,jdbcType=VARCHAR},
+      #{mchtName,jdbcType=VARCHAR}, #{txnOrderId,jdbcType=VARCHAR}, #{txnOrderTime,jdbcType=CHAR},
+      #{txnAmt,jdbcType=VARCHAR}, #{txnStatus,jdbcType=CHAR}, #{goodsDesc,jdbcType=VARCHAR},
+      #{termId,jdbcType=VARCHAR}, #{backEndUrl,jdbcType=VARCHAR}, #{codeUrl,jdbcType=VARCHAR},
+      #{appId,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR}, #{buyerLogonId,jdbcType=VARCHAR},
+      #{buyerId,jdbcType=VARCHAR}, #{timeExpire,jdbcType=VARCHAR}, #{origTxnNo,jdbcType=VARCHAR},
+      #{tpamMchtId,jdbcType=VARCHAR}, #{tpamTxnNo,jdbcType=VARCHAR}, #{tpamTxnDate,jdbcType=CHAR},
+      #{tpamTxnTime,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createEmp,jdbcType=VARCHAR},
+      #{modifyTime,jdbcType=TIMESTAMP}, #{modifyEmp,jdbcType=VARCHAR}, #{attach,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.pay.paydata.domain.TblTxnInfo">
+    insert into tbl_txn_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="txnNo != null">
+        txn_no,
+      </if>
+      <if test="txnDate != null">
+        txn_date,
+      </if>
+      <if test="txnTime != null">
+        txn_time,
+      </if>
+      <if test="txnType != null">
+        txn_type,
+      </if>
+      <if test="payType != null">
+        pay_type,
+      </if>
+      <if test="mchtNo != null">
+        mcht_no,
+      </if>
+      <if test="mchtName != null">
+        mcht_name,
+      </if>
+      <if test="txnOrderId != null">
+        txn_order_id,
+      </if>
+      <if test="txnOrderTime != null">
+        txn_order_time,
+      </if>
+      <if test="txnAmt != null">
+        txn_amt,
+      </if>
+      <if test="txnStatus != null">
+        txn_status,
+      </if>
+      <if test="goodsDesc != null">
+        goods_desc,
+      </if>
+      <if test="termId != null">
+        term_id,
+      </if>
+      <if test="backEndUrl != null">
+        back_end_url,
+      </if>
+      <if test="codeUrl != null">
+        code_url,
+      </if>
+      <if test="appId != null">
+        app_id,
+      </if>
+      <if test="openId != null">
+        open_id,
+      </if>
+      <if test="buyerLogonId != null">
+        buyer_logon_id,
+      </if>
+      <if test="buyerId != null">
+        buyer_id,
+      </if>
+      <if test="timeExpire != null">
+        time_expire,
+      </if>
+      <if test="origTxnNo != null">
+        orig_txn_no,
+      </if>
+      <if test="tpamMchtId != null">
+        tpam_mcht_id,
+      </if>
+      <if test="tpamTxnNo != null">
+        tpam_txn_no,
+      </if>
+      <if test="tpamTxnDate != null">
+        tpam_txn_date,
+      </if>
+      <if test="tpamTxnTime != null">
+        tpam_txn_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createEmp != null">
+        create_emp,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+      <if test="modifyEmp != null">
+        modify_emp,
+      </if>
+      <if test="attach != null">
+        attach,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="txnNo != null">
+        #{txnNo,jdbcType=VARCHAR},
+      </if>
+      <if test="txnDate != null">
+        #{txnDate,jdbcType=CHAR},
+      </if>
+      <if test="txnTime != null">
+        #{txnTime,jdbcType=CHAR},
+      </if>
+      <if test="txnType != null">
+        #{txnType,jdbcType=CHAR},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=CHAR},
+      </if>
+      <if test="mchtNo != null">
+        #{mchtNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mchtName != null">
+        #{mchtName,jdbcType=VARCHAR},
+      </if>
+      <if test="txnOrderId != null">
+        #{txnOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="txnOrderTime != null">
+        #{txnOrderTime,jdbcType=CHAR},
+      </if>
+      <if test="txnAmt != null">
+        #{txnAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="txnStatus != null">
+        #{txnStatus,jdbcType=CHAR},
+      </if>
+      <if test="goodsDesc != null">
+        #{goodsDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="termId != null">
+        #{termId,jdbcType=VARCHAR},
+      </if>
+      <if test="backEndUrl != null">
+        #{backEndUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="codeUrl != null">
+        #{codeUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null">
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerLogonId != null">
+        #{buyerLogonId,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerId != null">
+        #{buyerId,jdbcType=VARCHAR},
+      </if>
+      <if test="timeExpire != null">
+        #{timeExpire,jdbcType=VARCHAR},
+      </if>
+      <if test="origTxnNo != null">
+        #{origTxnNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tpamMchtId != null">
+        #{tpamMchtId,jdbcType=VARCHAR},
+      </if>
+      <if test="tpamTxnNo != null">
+        #{tpamTxnNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tpamTxnDate != null">
+        #{tpamTxnDate,jdbcType=CHAR},
+      </if>
+      <if test="tpamTxnTime != null">
+        #{tpamTxnTime,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createEmp != null">
+        #{createEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyEmp != null">
+        #{modifyEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="attach != null">
+        #{attach,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pay.paydata.domain.TblTxnInfo">
+    update tbl_txn_info
+    <set>
+      <if test="txnDate != null">
+        txn_date = #{txnDate,jdbcType=CHAR},
+      </if>
+      <if test="txnTime != null">
+        txn_time = #{txnTime,jdbcType=CHAR},
+      </if>
+      <if test="txnType != null">
+        txn_type = #{txnType,jdbcType=CHAR},
+      </if>
+      <if test="payType != null">
+        pay_type = #{payType,jdbcType=CHAR},
+      </if>
+      <if test="mchtNo != null">
+        mcht_no = #{mchtNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mchtName != null">
+        mcht_name = #{mchtName,jdbcType=VARCHAR},
+      </if>
+      <if test="txnOrderId != null">
+        txn_order_id = #{txnOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="txnOrderTime != null">
+        txn_order_time = #{txnOrderTime,jdbcType=CHAR},
+      </if>
+      <if test="txnAmt != null">
+        txn_amt = #{txnAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="txnStatus != null">
+        txn_status = #{txnStatus,jdbcType=CHAR},
+      </if>
+      <if test="goodsDesc != null">
+        goods_desc = #{goodsDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="termId != null">
+        term_id = #{termId,jdbcType=VARCHAR},
+      </if>
+      <if test="backEndUrl != null">
+        back_end_url = #{backEndUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="codeUrl != null">
+        code_url = #{codeUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        app_id = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null">
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerLogonId != null">
+        buyer_logon_id = #{buyerLogonId,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerId != null">
+        buyer_id = #{buyerId,jdbcType=VARCHAR},
+      </if>
+      <if test="timeExpire != null">
+        time_expire = #{timeExpire,jdbcType=VARCHAR},
+      </if>
+      <if test="origTxnNo != null">
+        orig_txn_no = #{origTxnNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tpamMchtId != null">
+        tpam_mcht_id = #{tpamMchtId,jdbcType=VARCHAR},
+      </if>
+      <if test="tpamTxnNo != null">
+        tpam_txn_no = #{tpamTxnNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tpamTxnDate != null">
+        tpam_txn_date = #{tpamTxnDate,jdbcType=CHAR},
+      </if>
+      <if test="tpamTxnTime != null">
+        tpam_txn_time = #{tpamTxnTime,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createEmp != null">
+        create_emp = #{createEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyEmp != null">
+        modify_emp = #{modifyEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="attach != null">
+        attach = #{attach,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where txn_no = #{txnNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pay.paydata.domain.TblTxnInfo">
+    update tbl_txn_info
+    set txn_date = #{txnDate,jdbcType=CHAR},
+      txn_time = #{txnTime,jdbcType=CHAR},
+      txn_type = #{txnType,jdbcType=CHAR},
+      pay_type = #{payType,jdbcType=CHAR},
+      mcht_no = #{mchtNo,jdbcType=VARCHAR},
+      mcht_name = #{mchtName,jdbcType=VARCHAR},
+      txn_order_id = #{txnOrderId,jdbcType=VARCHAR},
+      txn_order_time = #{txnOrderTime,jdbcType=CHAR},
+      txn_amt = #{txnAmt,jdbcType=VARCHAR},
+      txn_status = #{txnStatus,jdbcType=CHAR},
+      goods_desc = #{goodsDesc,jdbcType=VARCHAR},
+      term_id = #{termId,jdbcType=VARCHAR},
+      back_end_url = #{backEndUrl,jdbcType=VARCHAR},
+      code_url = #{codeUrl,jdbcType=VARCHAR},
+      app_id = #{appId,jdbcType=VARCHAR},
+      open_id = #{openId,jdbcType=VARCHAR},
+      buyer_logon_id = #{buyerLogonId,jdbcType=VARCHAR},
+      buyer_id = #{buyerId,jdbcType=VARCHAR},
+      time_expire = #{timeExpire,jdbcType=VARCHAR},
+      orig_txn_no = #{origTxnNo,jdbcType=VARCHAR},
+      tpam_mcht_id = #{tpamMchtId,jdbcType=VARCHAR},
+      tpam_txn_no = #{tpamTxnNo,jdbcType=VARCHAR},
+      tpam_txn_date = #{tpamTxnDate,jdbcType=CHAR},
+      tpam_txn_time = #{tpamTxnTime,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_emp = #{createEmp,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      modify_emp = #{modifyEmp,jdbcType=VARCHAR},
+      attach = #{attach,jdbcType=VARCHAR}
+    where txn_no = #{txnNo,jdbcType=VARCHAR}
+  </update>
+
+  <sql id="Base_Condition">
+    <where>
+      <if test="txnNo != null and txnNo != ''">
+        txn_no = #{txnNo,jdbcType=VARCHAR}
+      </if>
+      <if test="txnDate != null and txnDate != ''">
+         and txn_date = #{txnDate,jdbcType=CHAR}
+      </if>
+      <if test="txnTime != null and txnTime != ''">
+        and txn_time = #{txnTime,jdbcType=CHAR}
+      </if>
+      <if test="txnType != null and txnType != ''">
+        and txn_type = #{txnType,jdbcType=CHAR}
+      </if>
+      <if test="payType != null and payType != ''">
+        and pay_type = #{payType,jdbcType=CHAR}
+      </if>
+      <if test="mchtNo != null and mchtNo != ''">
+        and mcht_no = #{mchtNo,jdbcType=VARCHAR}
+      </if>
+      <if test="mchtName != null and mchtName != ''">
+        and mcht_name like '%'#{mchtName,jdbcType=VARCHAR}
+      </if>
+      <if test="txnOrderId != null and txnOrderId != ''">
+        and txn_order_id = #{txnOrderId,jdbcType=VARCHAR}
+      </if>
+      <if test="txnAmt != null and txnAmt != ''">
+        and txn_amt &gt;= #{txnAmt,jdbcType=VARCHAR}
+      </if>
+      <if test="txnStatus != null and txnStatus != ''">
+        and txn_status in (#{txnStatus,jdbcType=CHAR})
+      </if>
+
+    </where>
+
+  </sql>
+
+  <select id="getTxnInfoList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_txn_info
+    <include refid="Base_Condition" />
+    order by txn_date, txn_time desc
+    limit #{offset}, #{limit}
+  </select>
+
+  <select id="countTxnInfo" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select count(1) from tbl_txn_info
+    <include refid="Base_Condition" />
+  </select>
+
+  <select id="selectByTxnOrderId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tbl_txn_info
+    where txn_order_id = #{txnOrderId,jdbcType=VARCHAR}
+  </select>
+
+  <resultMap id="StatisticsResultMap" type="com.pay.paydata.domain.StatisticsInfo">
+    <result column="mcht_no" jdbcType="CHAR" property="mchtNo" />
+    <result column="pay_txn_amt" jdbcType="DECIMAL" property="payTxnAmt" />
+    <result column="refund_txn_amt" jdbcType="DECIMAL" property="refundTxnAmt" />
+  </resultMap>
+
+
+  <select id="getMchtTotalAmt" resultMap="StatisticsResultMap" parameterType="java.lang.String" >
+    select
+      p.mcht_no, IFNULL(p.pay_txn_amt, 0) as pay_txn_amt, IFNULL(r.refund_txn_amt, 0) as refund_txn_amt
+      from
+      (select mcht_no, sum(txn_amt) as pay_txn_amt from tbl_txn_info
+      where txn_status = '00' and txn_date = #{txnDate} and txn_type = '6002'
+      group by mcht_no, txn_type) p
+      LEFT JOIN
+      (select mcht_no, sum(txn_amt) as refund_txn_amt from tbl_txn_info
+      where txn_status = '00' and txn_date = #{txnDate} and txn_type = '6003'
+      group by mcht_no, txn_type) r on p.mcht_no = r.mcht_no
+  </select>
+
+
+  <select id="selectRefundTxn" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tbl_txn_info
+    where orig_txn_no = #{origTxnNo,jdbcType=VARCHAR}
+  </select>
+
+
+
+  <!--<select id="indexOrderData" resultMap="BaseResultMap" parameterType="java.lang.String" >-->
+    <!--select-->
+    <!--<include refid="Base_Column_List" />-->
+    <!--from tbl_txn_info-->
+    <!--where orig_txn_no = #{origTxnNo,jdbcType=VARCHAR}-->
+  <!--</select>-->
+
+</mapper>

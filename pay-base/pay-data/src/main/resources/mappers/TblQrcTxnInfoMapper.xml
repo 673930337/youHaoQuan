@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pay.paydata.dao.TblQrcTxnInfoMapper">
+  <resultMap id="BaseResultMap" type="com.pay.paydata.domain.TblQrcTxnInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="txn_no" jdbcType="VARCHAR" property="txnNo" />
+    <result column="txn_tm" jdbcType="VARCHAR" property="txnTm" />
+    <result column="mcht_no" jdbcType="VARCHAR" property="mchtNo" />
+    <result column="token_code" jdbcType="VARCHAR" property="tokenCode" />
+    <result column="txn_info" jdbcType="VARCHAR" property="txnInfo" />
+    <result column="qrc_tx_bg" jdbcType="VARCHAR" property="qrcTxBg" />
+    <result column="qrc_tx_ed" jdbcType="VARCHAR" property="qrcTxEd" />
+    <result column="qrc_status" jdbcType="CHAR" property="qrcStatus" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_emp" jdbcType="VARCHAR" property="createEmp" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="modify_emp" jdbcType="VARCHAR" property="modifyEmp" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, txn_no, txn_tm, mcht_no, token_code, txn_info, qrc_tx_bg, qrc_tx_ed, qrc_status,
+    create_time, create_emp, modify_time, modify_emp
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_qrc_txn_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tbl_qrc_txn_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.pay.paydata.domain.TblQrcTxnInfo">
+    insert into tbl_qrc_txn_info (id, txn_no, txn_tm,
+      mcht_no, token_code, txn_info,
+      qrc_tx_bg, qrc_tx_ed, qrc_status,
+      create_time, create_emp, modify_time,
+      modify_emp)
+    values (#{id,jdbcType=BIGINT}, #{txnNo,jdbcType=VARCHAR}, #{txnTm,jdbcType=VARCHAR},
+      #{mchtNo,jdbcType=VARCHAR}, #{tokenCode,jdbcType=VARCHAR}, #{txnInfo,jdbcType=VARCHAR},
+      #{qrcTxBg,jdbcType=VARCHAR}, #{qrcTxEd,jdbcType=VARCHAR}, #{qrcStatus,jdbcType=CHAR},
+      #{createTime,jdbcType=TIMESTAMP}, #{createEmp,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP},
+      #{modifyEmp,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pay.paydata.domain.TblQrcTxnInfo">
+    insert into tbl_qrc_txn_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="txnNo != null">
+        txn_no,
+      </if>
+      <if test="txnTm != null">
+        txn_tm,
+      </if>
+      <if test="mchtNo != null">
+        mcht_no,
+      </if>
+      <if test="tokenCode != null">
+        token_code,
+      </if>
+      <if test="txnInfo != null">
+        txn_info,
+      </if>
+      <if test="qrcTxBg != null">
+        qrc_tx_bg,
+      </if>
+      <if test="qrcTxEd != null">
+        qrc_tx_ed,
+      </if>
+      <if test="qrcStatus != null">
+        qrc_status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createEmp != null">
+        create_emp,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+      <if test="modifyEmp != null">
+        modify_emp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="txnNo != null">
+        #{txnNo,jdbcType=VARCHAR},
+      </if>
+      <if test="txnTm != null">
+        #{txnTm,jdbcType=VARCHAR},
+      </if>
+      <if test="mchtNo != null">
+        #{mchtNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenCode != null">
+        #{tokenCode,jdbcType=VARCHAR},
+      </if>
+      <if test="txnInfo != null">
+        #{txnInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="qrcTxBg != null">
+        #{qrcTxBg,jdbcType=VARCHAR},
+      </if>
+      <if test="qrcTxEd != null">
+        #{qrcTxEd,jdbcType=VARCHAR},
+      </if>
+      <if test="qrcStatus != null">
+        #{qrcStatus,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createEmp != null">
+        #{createEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyEmp != null">
+        #{modifyEmp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pay.paydata.domain.TblQrcTxnInfo">
+    update tbl_qrc_txn_info
+    <set>
+      <if test="txnNo != null">
+        txn_no = #{txnNo,jdbcType=VARCHAR},
+      </if>
+      <if test="txnTm != null">
+        txn_tm = #{txnTm,jdbcType=VARCHAR},
+      </if>
+      <if test="mchtNo != null">
+        mcht_no = #{mchtNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenCode != null">
+        token_code = #{tokenCode,jdbcType=VARCHAR},
+      </if>
+      <if test="txnInfo != null">
+        txn_info = #{txnInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="qrcTxBg != null">
+        qrc_tx_bg = #{qrcTxBg,jdbcType=VARCHAR},
+      </if>
+      <if test="qrcTxEd != null">
+        qrc_tx_ed = #{qrcTxEd,jdbcType=VARCHAR},
+      </if>
+      <if test="qrcStatus != null">
+        qrc_status = #{qrcStatus,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createEmp != null">
+        create_emp = #{createEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyEmp != null">
+        modify_emp = #{modifyEmp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pay.paydata.domain.TblQrcTxnInfo">
+    update tbl_qrc_txn_info
+    set txn_no = #{txnNo,jdbcType=VARCHAR},
+      txn_tm = #{txnTm,jdbcType=VARCHAR},
+      mcht_no = #{mchtNo,jdbcType=VARCHAR},
+      token_code = #{tokenCode,jdbcType=VARCHAR},
+      txn_info = #{txnInfo,jdbcType=VARCHAR},
+      qrc_tx_bg = #{qrcTxBg,jdbcType=VARCHAR},
+      qrc_tx_ed = #{qrcTxEd,jdbcType=VARCHAR},
+      qrc_status = #{qrcStatus,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_emp = #{createEmp,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      modify_emp = #{modifyEmp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <sql id="Base_Condition">
+    <where>
+      <if test="txnNo != null and txnNo != ''">
+        txn_no = #{txnNo,jdbcType=VARCHAR}
+      </if>
+      <if test="txnTm != null and txnTm != ''">
+        and txn_tm = #{txnTm,jdbcType=VARCHAR}
+      </if>
+      <if test="mchtNo != null and mchtNo != ''">
+        and mcht_no = #{mchtNo,jdbcType=VARCHAR}
+      </if>
+      <if test="qrcStatus != null and qrcStatus != ''">
+        and qrc_status = #{qrcStatus,jdbcType=CHAR}
+      </if>
+    </where>
+  </sql>
+
+  <!--当前商户二维码是否存在并且在有效期内-->
+  <select id="getQrcInfoByMchtNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    <![CDATA[
+      from tbl_qrc_txn_info  where mcht_no = #{mchtNo}
+      and qrc_tx_bg <= #{now} and qrc_tx_ed >= #{now}
+    ]]>
+  </select>
+
+  <!--根据tokenCode获取二维码原始信息-->
+  <select id="getQrcInfoByToken" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    <![CDATA[
+      from tbl_qrc_txn_info  where token_code = #{tokenCode}
+      and qrc_tx_bg <= #{now} and qrc_tx_ed >= #{now}
+    ]]>
+  </select>
+
+
+  <!--分页获取二维码流水信息-->
+  <select id="getQrcInfoList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+      <include refid="Base_Column_List" />
+    from tbl_qrc_txn_info
+      <include refid="Base_Condition" />
+    order by txn_tm desc
+    limit #{offset}, #{limit}
+  </select>
+
+
+  <!--获取二维码流水信息总数-->
+  <select id="countQrcInfo" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select
+     count(1)
+    from tbl_qrc_txn_info
+    <include refid="Base_Condition" />
+  </select>
+
+</mapper>

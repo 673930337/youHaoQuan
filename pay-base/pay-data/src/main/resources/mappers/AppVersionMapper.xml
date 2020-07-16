@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pay.paydata.dao.AppVersionDao">
+
+	<select id="get" resultType="com.pay.paydata.domain.AppVersionDO">
+		select * from app_version where id = #{value}
+	</select>
+
+
+	<select id="getVersion" resultType="com.pay.paydata.domain.AppVersionDO">
+		select *  from app_version where status = 1  order by create_time desc limit 1
+	</select>
+
+	<select id="list" resultType="com.pay.paydata.domain.AppVersionDO">
+		select * from app_version
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="version != null and version != ''"> and version = #{version} </if>
+		  		  <if test="androidUrl != null and androidUrl != ''"> and android_url = #{androidUrl} </if>
+		  		  <if test="iosUrl != null and iosUrl != ''"> and ios_url = #{iosUrl} </if>
+		  		  <if test="name != null and name != ''"> and name = #{name} </if>
+		  		  <if test="createTime != null and createTime != ''"> and create_time = #{createTime} </if>
+		  		  <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime} </if>
+		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from app_version
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="version != null and version != ''"> and version = #{version} </if>
+		  		  <if test="androidUrl != null and androidUrl != ''"> and android_url = #{androidUrl} </if>
+		  		  <if test="iosUrl != null and iosUrl != ''"> and ios_url = #{iosUrl} </if>
+		  		  <if test="name != null and name != ''"> and name = #{name} </if>
+		  		  <if test="createTime != null and createTime != ''"> and create_time = #{createTime} </if>
+		  		  <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime} </if>
+		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.pay.paydata.domain.AppVersionDO" useGeneratedKeys="true" keyProperty="id">
+		insert into app_version
+		(
+			`version`, 
+			`android_url`,
+			`ios_url`,
+			`name`,
+			`create_time`, 
+			`update_time`, 
+			`status`
+		)
+		values
+		(
+			#{version}, 
+			#{androidUrl},
+			#{iosUrl},
+			#{name},
+			#{createTime}, 
+			#{updateTime}, 
+			#{status}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.pay.paydata.domain.AppVersionDO">
+		update app_version 
+		<set>
+			<if test="version != null">`version` = #{version}, </if>
+			<if test="androidUrl != null">`android_url` = #{androidUrl}, </if>
+			<if test="iosUrl != null">`ios_url` = #{iosUrl}, </if>
+			<if test="name != null">`name` = #{name}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="updateTime != null">`update_time` = #{updateTime}, </if>
+			<if test="status != null">`status` = #{status}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from app_version where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from app_version where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

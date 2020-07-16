@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pay.paydata.dao.TblCouponInfoMapper">
+    <resultMap id="BaseResultMap" type="com.pay.paydata.domain.TblCouponInfo">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="mcht_no" jdbcType="VARCHAR" property="mchtNo"/>
+        <result column="coupon_type" jdbcType="VARCHAR" property="couponType"/>
+        <result column="coupon_num" jdbcType="INTEGER" property="couponNum"/>
+        <result column="discount" jdbcType="DOUBLE" property="discount"/>
+        <result column="full_amt" jdbcType="DOUBLE" property="fullAmt"/>
+        <result column="subtraction_amt" jdbcType="INTEGER" property="subtractionAmt"/>
+        <result column="effective_date" jdbcType="TIMESTAMP" property="effectiveDate"/>
+        <result column="expire_date" jdbcType="TIMESTAMP" property="expireDate"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="create_emp" jdbcType="VARCHAR" property="createEmp"/>
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime"/>
+        <result column="modify_emp" jdbcType="VARCHAR" property="modifyEmp"/>
+        <result column="poster" jdbcType="VARCHAR" property="poster"/>
+        <result column="thumbnail" jdbcType="VARCHAR" property="thumbnail"/>
+        <result column="getNum" jdbcType="BIGINT" property="getNum"/>
+        <result column="shareNum" jdbcType="BIGINT" property="shareNum"/>
+        <result column="useNum" jdbcType="BIGINT" property="useNum"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, mcht_no, coupon_type, coupon_num, discount, full_amt, subtraction_amt, effective_date,
+    expire_date, create_time, create_emp, modify_time, modify_emp,poster,thumbnail,getNum,shareNum,useNum
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tbl_coupon_info
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tbl_coupon_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.pay.paydata.domain.TblCouponInfo" useGeneratedKeys="true" keyProperty="id">
+    insert into tbl_coupon_info (id, mcht_no, coupon_type,
+      coupon_num, discount, full_amt,
+      subtraction_amt, effective_date, expire_date,
+      create_time, create_emp, modify_time,
+      modify_emp,poster,thumbnail,getNum,shareNum,useNum)
+    values (#{id,jdbcType=BIGINT}, #{mchtNo,jdbcType=VARCHAR}, #{couponType,jdbcType=VARCHAR},
+      #{couponNum,jdbcType=INTEGER}, #{discount,jdbcType=INTEGER}, #{fullAmt,jdbcType=INTEGER},
+      #{subtractionAmt,jdbcType=INTEGER}, #{effectiveDate,jdbcType=VARCHAR}, #{expireDate,jdbcType=VARCHAR},
+      #{createTime,jdbcType=TIMESTAMP}, #{createEmp,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP},
+      #{modifyEmp,jdbcType=VARCHAR},#{poster,jdbcType=VARCHAR},#{thumbnail,jdbcType=VARCHAR},#{getNum,jdbcType=BIGINT},#{shareNum,jdbcType=BIGINT} ,#{useNum,jdbcType=BIGINT})
+  </insert>
+    <insert id="insertSelective" parameterType="com.pay.paydata.domain.TblCouponInfo">
+        insert into tbl_coupon_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="mchtNo != null">
+                mcht_no,
+            </if>
+            <if test="couponType != null">
+                coupon_type,
+            </if>
+            <if test="couponNum != null">
+                coupon_num,
+            </if>
+            <if test="discount != null">
+                discount,
+            </if>
+            <if test="fullAmt != null">
+                full_amt,
+            </if>
+            <if test="subtractionAmt != null">
+                subtraction_amt,
+            </if>
+            <if test="effectiveDate != null">
+                effective_date,
+            </if>
+            <if test="expireDate != null">
+                expire_date,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="createEmp != null">
+                create_emp,
+            </if>
+            <if test="modifyTime != null">
+                modify_time,
+            </if>
+            <if test="modifyEmp != null">
+                modify_emp,
+            </if>
+            <if test="getNum != null">
+                getNum,
+            </if>
+            <if test="shareNum != null">
+                shareNum,
+            </if>
+            <if test="useNum != null">
+                useNum,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="mchtNo != null">
+                #{mchtNo,jdbcType=VARCHAR},
+            </if>
+            <if test="couponType != null">
+                #{couponType,jdbcType=VARCHAR},
+            </if>
+            <if test="couponNum != null">
+                #{couponNum,jdbcType=INTEGER},
+            </if>
+            <if test="discount != null">
+                #{discount,jdbcType=INTEGER},
+            </if>
+            <if test="fullAmt != null">
+                #{fullAmt,jdbcType=INTEGER},
+            </if>
+            <if test="subtractionAmt != null">
+                #{subtractionAmt,jdbcType=INTEGER},
+            </if>
+            <if test="effectiveDate != null">
+                #{effectiveDate,jdbcType=VARCHAR},
+            </if>
+            <if test="expireDate != null">
+                #{expireDate,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createEmp != null">
+                #{createEmp,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyEmp != null">
+                #{modifyEmp,jdbcType=VARCHAR},
+            </if>
+            <if test="getNum != null">
+                #{getNum,jdbcType=BIGINT},
+            </if>
+            <if test="shareNum != null">
+                #{shareNum,jdbcType=BIGINT},
+            </if>
+            <if test="useNum != null">
+                #{useNum,jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.pay.paydata.domain.TblCouponInfo">
+        update tbl_coupon_info
+        <set>
+            <if test="mchtNo != null">
+                mcht_no = #{mchtNo,jdbcType=VARCHAR},
+            </if>
+            <if test="couponType != null">
+                coupon_type = #{couponType,jdbcType=VARCHAR},
+            </if>
+            <if test="couponNum != null">
+                coupon_num = #{couponNum,jdbcType=INTEGER},
+            </if>
+            <if test="discount != null">
+                discount = #{discount,jdbcType=INTEGER},
+            </if>
+            <if test="fullAmt != null">
+                full_amt = #{fullAmt,jdbcType=INTEGER},
+            </if>
+            <if test="subtractionAmt != null">
+                subtraction_amt = #{subtractionAmt,jdbcType=INTEGER},
+            </if>
+            <if test="effectiveDate != null">
+                effective_date = #{effectiveDate,jdbcType=VARCHAR},
+            </if>
+            <if test="expireDate != null">
+                expire_date = #{expireDate,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createEmp != null">
+                create_emp = #{createEmp,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyEmp != null">
+                modify_emp = #{modifyEmp,jdbcType=VARCHAR},
+            </if>
+
+            <if test="thumbnail != null">
+                thumbnail = #{thumbnail,jdbcType=VARCHAR},
+            </if>
+            <if test="poster != null">
+                poster = #{poster,jdbcType=VARCHAR},
+            </if>
+            <if test="shareNum != null">
+                shareNum= #{shareNum,jdbcType=BIGINT},
+            </if>
+            <if test="getNum != null">
+                getNum=#{getNum,jdbcType=BIGINT},
+            </if>
+            <if test="useNum != null">
+                useNum=#{useNum,jdbcType=BIGINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.pay.paydata.domain.TblCouponInfo">
+    update tbl_coupon_info
+    set mcht_no = #{mchtNo,jdbcType=VARCHAR},
+      coupon_type = #{couponType,jdbcType=VARCHAR},
+      coupon_num = #{couponNum,jdbcType=INTEGER},
+      discount = #{discount,jdbcType=INTEGER},
+      full_amt = #{fullAmt,jdbcType=INTEGER},
+      subtraction_amt = #{subtractionAmt,jdbcType=INTEGER},
+      effective_date = #{effectiveDate,jdbcType=VARCHAR},
+      expire_date = #{expireDate,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_emp = #{createEmp,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      modify_emp = #{modifyEmp,jdbcType=VARCHAR},
+
+      thumbnail = #{thumbnail,jdbcType=VARCHAR},
+      poster = #{poster,jdbcType=VARCHAR},
+      getNum=  #{getNum,jdbcType=BIGINT},
+      shareNum=  #{shareNum,jdbcType=BIGINT},
+      useNum=  #{useNum,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+    <sql id="Base_Condition">
+        <where>
+            <if test="mchtNo != null and mchtNo != ''">
+                mcht_no = #{mchtNo,jdbcType=VARCHAR}
+            </if>
+            <if test="couponType != null and couponType != ''">
+                and coupon_type = #{couponType,jdbcType=VARCHAR}
+            </if>
+            <if test="couponNum != null and couponNum != ''">
+                and coupon_num = #{couponNum,jdbcType=INTEGER}
+            </if>
+            <if test="discount != null and discount != ''">
+                and discount = #{discount,jdbcType=INTEGER}
+            </if>
+        </where>
+    </sql>
+
+    <!--根据商户号获取优惠券列表-->
+    <select id="selectByMchtNo" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from tbl_coupon_info
+        where mcht_no = #{mchtNo,jdbcType=VARCHAR}
+    </select>
+
+    <!--分页获取优惠券列表-->
+    <select id="getCouponInfoList" resultMap="BaseResultMap" parameterType="java.util.Map">
+        select
+        <include refid="Base_Column_List"/>
+        from tbl_coupon_info
+        <include refid="Base_Condition"/>
+        order by mcht_no
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--获取优惠券数量-->
+    <select id="countCouponInfo" resultType="java.lang.Integer" parameterType="java.util.Map">
+        select
+        count(1)
+        from tbl_coupon_info
+        <include refid="Base_Condition"/>
+    </select>
+
+
+    <!--H5获取优惠券详情  当前-->
+    <select id="getH5couponDetail" resultType="com.alibaba.fastjson.JSONObject"
+            parameterType="com.alibaba.fastjson.JSONObject">
+    SELECT
+      tbl_coupon_info.*,
+      tbl_mcht_inf.`abstractTxt`,
+      tbl_mcht_inf.`mcht_name`,
+      tbl_mcht_inf.`mcht_short_name`,
+      tbl_mcht_inf.`address`,
+      tbl_mcht_inf.cs_tel,
+      tbl_mcht_inf.logo,
+      tbl_mcht_inf.contact_tel_no
+    FROM
+      `tbl_coupon_info`
+      LEFT JOIN `tbl_mcht_inf`
+        ON tbl_coupon_info.`mcht_no` = tbl_mcht_inf.`mcht_no`
+        WHERE tbl_coupon_info.id = #{id,jdbcType=VARCHAR}
+  </select>
+
+
+    <!--H5获取优惠券详情  其他-->
+    <select id="getH5otherCouponInfo" resultType="com.alibaba.fastjson.JSONObject"
+            parameterType="com.alibaba.fastjson.JSONObject">
+
+    SELECT
+      tbl_coupon_info.*,
+      tbl_mcht_inf.`abstractTxt`,
+      tbl_mcht_inf.`mcht_name`,
+      tbl_mcht_inf.`mcht_short_name`,
+      tbl_mcht_inf.`address`,
+      tbl_mcht_inf.cs_tel,
+      tbl_mcht_inf.logo,
+      tbl_mcht_inf.contact_tel_no
+
+    FROM
+      `tbl_coupon_info`
+
+      LEFT JOIN `tbl_mcht_inf`
+        ON tbl_coupon_info.`mcht_no` = tbl_mcht_inf.`mcht_no`
+        WHERE tbl_coupon_info.id != #{id} and tbl_coupon_info.mcht_no = #{mchtNo,jdbcType=VARCHAR}
+         AND  tbl_coupon_info.`expire_date` &gt;  NOW()
+        AND tbl_coupon_info.`effective_date` &lt; NOW()
+          AND tbl_coupon_info.`coupon_num` &gt; 0
+        order by tbl_mcht_inf.`mcht_no`
+  </select>
+
+
+    <!--H5获取当前店个人优惠券  -->
+    <select id="getOwnCouponList" resultType="com.alibaba.fastjson.JSONObject"
+            parameterType="com.alibaba.fastjson.JSONObject">
+      SELECT
+            coupon.*,
+            much.`abstractTxt`,
+            much.`mcht_name`,
+            much.`mcht_short_name`,
+            much.`address`,
+            much.cs_tel,
+            much.logo,
+            much.contact_tel_no,
+            consumer.id consumerCouponId
+      FROM
+        `consumer_coupon_info` consumer
+         JOIN `tbl_coupon_info` coupon
+          ON consumer.`couponId` = coupon.`id`
+        LEFT JOIN `tbl_mcht_inf` much
+          ON coupon.`mcht_no` = much.`mcht_no`
+      WHERE consumer.`consumerId` = #{consumerId,jdbcType=VARCHAR}
+        AND coupon.`mcht_no` = #{mchtNo,jdbcType=VARCHAR}
+        and consumer.status='0'
+        order by coupon.`mcht_no`
+  </select>
+
+
+    <!--H5获取所有店个人优惠券  -->
+    <select id="myCouponList" resultType="com.alibaba.fastjson.JSONObject"
+            parameterType="com.alibaba.fastjson.JSONObject">
+        SELECT
+        coupon.*,
+        much.`abstractTxt`,
+        much.`mcht_name`,
+        much.`mcht_short_name`,
+        much.`address`,
+        much.cs_tel,
+        much.logo,
+        much.contact_tel_no,
+        consumer.id consumerCouponId
+        FROM
+        `consumer_coupon_info` consumer
+        JOIN `tbl_coupon_info` coupon
+        ON consumer.`couponId` = coupon.`id`
+        LEFT JOIN `tbl_mcht_inf` much
+        ON coupon.`mcht_no` = much.`mcht_no`
+        WHERE consumer.`consumerId` = #{consumerId}
+
+        <if test="status != null and status != 2">
+            and consumer.status=#{status}
+        </if>
+
+        <if test="status == 2">
+            AND coupon.`expire_date` &lt; now()
+        </if>
+
+        order by coupon.`mcht_no`
+        <if test="offset != null and limit != null">
+            limit ${offset}, ${limit}
+        </if>
+    </select>
+
+
+    <select id="myCouponListCount" resultType="java.lang.Long" parameterType="com.alibaba.fastjson.JSONObject">
+        SELECT
+        count(1)
+        FROM
+        `consumer_coupon_info` consumer
+        JOIN `tbl_coupon_info` coupon
+        ON consumer.`couponId` = coupon.`id`
+        LEFT JOIN `tbl_mcht_inf` much
+        ON coupon.`mcht_no` = much.`mcht_no`
+        WHERE consumer.`consumerId` = #{consumerId,jdbcType=VARCHAR}
+        <if test="status != null and status != 2">
+            and consumer.status=#{status}
+        </if>
+
+        <if test="status == 2">
+            AND coupon.`expire_date` &lt; now()
+        </if>
+
+    </select>
+
+    <!--H5商家优惠券详情  -->
+    <select id="merchantInfo" resultType="com.alibaba.fastjson.JSONObject"
+            parameterType="com.alibaba.fastjson.JSONObject">
+    SELECT
+            coupon.*,
+            much.`abstractTxt`,
+            much.`mcht_name`,
+            much.`mcht_short_name`,
+            much.`address`,
+            much.cs_tel,
+            much.logo,
+            much.contact_tel_no
+      FROM
+      `tbl_coupon_info` coupon
+        LEFT JOIN `tbl_mcht_inf` much
+          ON coupon.`mcht_no` = much.`mcht_no`
+      WHERE  coupon.`mcht_no` = #{mchtNo,jdbcType=VARCHAR}
+        AND  coupon.`expire_date` &gt;  NOW()
+        AND coupon.`effective_date` &lt; NOW()
+            AND coupon.`coupon_num` &gt; 0
+  </select>
+
+
+    <!--  -->
+    <select id="getNumChartData" resultType="com.alibaba.fastjson.JSONObject" parameterType="java.lang.Long">
+           SELECT
+              #{id,jdbcType=BIGINT} couponId,
+              DATE_FORMAT(createTime, '%Y-%m-%d') AS `day`,
+              IFNULL(COUNT(1), 0) getNum
+            FROM
+              `consumer_coupon_info`
+            WHERE `couponId` = #{id,jdbcType=BIGINT}
+            GROUP BY `day`
+  </select>
+
+</mapper>
